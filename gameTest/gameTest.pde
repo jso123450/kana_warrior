@@ -8,13 +8,31 @@ color currentColor;
 boolean rectOver = false;
 boolean circleOver = false;
 PImage img;
+PGraphics pg;
+
 
 void setup() {
   img = loadImage("../pictures/hiragana/a.png");  
-  size(640, 360);
+  size(1530,830);
+  pg = createGraphics(1, 1);
 }
 void draw() {
   image(img, 0, 0, img.width/2, img.height/2);
+  fill(0, 12);
+  rect(0, 0, width, height);
+  fill(255);
+  noStroke();
+  ellipse(mouseX, mouseY, 100, 100);
+  
+  pg.beginDraw();
+  pg.background(51);
+  pg.noFill();
+  pg.stroke(255);
+  pg.ellipse(mouseX-120, mouseY-60, 60, 60);
+  pg.endDraw();
+  
+  // Draw the offscreen buffer to the screen with image() 
+  image(pg, 120, 60); 
 }
 /*rectColor = color(0);
   rectHighlight = color(51);
