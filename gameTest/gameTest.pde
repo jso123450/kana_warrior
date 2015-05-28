@@ -21,11 +21,11 @@ void setup() {
 void charsSetup(){
  String[] others = {"k","g","s","z","t","d","n","h","b","p","m","r"};
  String[] basicChars = {"a","i","u","e","o"};
- for (int i = 0; i < basicChars.length; i++)
-   chars.add(basicChars[i]);
- for (int i = 0; i < others.length; i++){
-   for (int j = 0; j < basicChars.length; j++)
-     chars.add(others[i] + basicChars[j]);
+ for (String character : basicChars)
+   chars.add(character);
+ for (String firstChar : others){
+   for (String basicChar : basicChars)
+     chars.add(firstChar + basicChar);
  }
  // irregular ones
  chars.add("ya");
