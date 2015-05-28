@@ -1,3 +1,5 @@
+import java.util.*;
+
 int rectX, rectY;      // Position of square button
 int circleX, circleY;  // Position of circle button
 int rectSize = 90;     // Diameter of rect
@@ -7,15 +9,19 @@ color rectHighlight, circleHighlight;
 color currentColor;
 boolean rectOver = false;
 boolean circleOver = false;
-PImage img1, img2, img3, img4, img5, img6;
+PImage[] imgs;
+//PImage img1, img2, img3, img4, img5, img6;
 PGraphics pg;
 ArrayList<String> chars;
+Random r;
 
 void setup() {
-  img1 = loadImage("../pictures/hiragana/a.png");  
+  //img1 = loadImage("../pictures/hiragana/a.png");  
   size(1530,830);
   pg = createGraphics(1, 1);
   chars = new ArrayList<String>();
+  imgs = new PImage[6];
+  r = new Random();
 }
 
 void charsSetup(){
@@ -35,8 +41,23 @@ void charsSetup(){
  chars.add("n");
 }
 
+
+// word is no longer than 6 characters
+void charSelection(String[] word){
+  int len = word.length;
+  for (int i = 0; i < len; i++)
+    imgs[i] = loadImage(".../pictures/hiragana/" + word[i] + ".png");
+  for (int j = len; j < imgs.length; j++){
+    ArrayList<String> cutChars = chars;
+    for (int k = 0; k < len; k++)
+      cutChars.remove(word[k]);
+    int randInd = r.nextInt(cutChars.size());
+    imgs[j] = loadImage(".../pictures/hiragana/" + cutChars.get(randInd) + ".png");
+  }
+}
+
 void draw() {
-  image(img1, 0, 0, img1.width/2, img1.height/2);
+  //image(img1, 0, 0, img1.width/2, img1.height/2);
   fill(255, 12);
   rect(0, 0, width, height);
   fill(75);
