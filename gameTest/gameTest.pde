@@ -7,25 +7,44 @@ color rectHighlight, circleHighlight;
 color currentColor;
 boolean rectOver = false;
 boolean circleOver = false;
-PImage img;
+PImage img1, img2, img3, img4, img5, img6;
 PGraphics pg;
-
+ArrayList<String> chars;
 
 void setup() {
-  img = loadImage("../pictures/hiragana/a.png");  
+  img1 = loadImage("../pictures/hiragana/a.png");  
   size(1530,830);
   pg = createGraphics(1, 1);
+  chars = new ArrayList<String>();
 }
+
+void charsSetup(){
+ String[] others = {"k","g","s","z","t","d","n","h","b","p","m","r"};
+ String[] basicChars = {"a","i","u","e","o"};
+ for (int i = 0; i < basicChars.length; i++)
+   chars.add(basicChars[i]);
+ for (int i = 0; i < others.length; i++){
+   for (int j = 0; j < basicChars.length; j++)
+     chars.add(others[i] + basicChars[j]);
+ }
+ // irregular ones
+ chars.add("ya");
+ chars.add("yu");
+ chars.add("yo");
+ chars.add("wa");
+ chars.add("n");
+}
+
 void draw() {
-  image(img, 0, 0, img.width/2, img.height/2);
-  fill(0, 12);
+  image(img1, 0, 0, img1.width/2, img1.height/2);
+  fill(255, 12);
   rect(0, 0, width, height);
-  fill(255);
+  fill(75);
   noStroke();
-  ellipse(mouseX, mouseY, 100, 100);
+  ellipse(mouseX, mouseY, 75, 75);
   
   pg.beginDraw();
-  pg.background(51);
+  pg.background(0);
   pg.noFill();
   pg.stroke(255);
   pg.ellipse(mouseX-120, mouseY-60, 60, 60);
