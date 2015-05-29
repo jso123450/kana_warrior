@@ -27,7 +27,7 @@ public class Word{
 	return w;
     }
 
-    public String[] getSyll(){
+    public String[] getSyllables(){
 	return syllables;
     }
 
