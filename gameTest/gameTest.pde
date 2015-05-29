@@ -39,6 +39,7 @@ void charsSetup(){
  chars.add("yo");
  chars.add("wa");
  chars.add("n");
+ System.out.println(chars);
 }
 
 
@@ -46,18 +47,40 @@ void charsSetup(){
 void charSelection(String[] word){
   int len = word.length;
   for (int i = 0; i < len; i++)
-    imgs[i] = loadImage(".../pictures/hiragana/" + word[i] + ".png");
+    imgs[i] = loadImage("../pictures/hiragana/" + word[i] + ".png");
+  /*
   for (int j = len; j < imgs.length; j++){
     ArrayList<String> cutChars = chars;
+    System.out.println(cutChars);
     for (int k = 0; k < len; k++)
       cutChars.remove(word[k]);
+    //System.out.println(cutChars);
     int randInd = r.nextInt(cutChars.size());
-    imgs[j] = loadImage(".../pictures/hiragana/" + cutChars.get(randInd) + ".png");
+    imgs[j] = loadImage("../pictures/hiragana/" + cutChars.get(randInd) + ".png");
   }
+  */
+}
+
+void drawChars(String[] word){
+  charSelection(word);
+  int x = 0;
+  int y = 0;
+  int i = 0;
+  for ( ; i < 3 && i < word.length; i++){
+    image(imgs[i],x,y,250,280);
+    y+= 280;
+  }
+  x = 1250;
+  y = 0;
+  for ( ; i < word.length; i++){
+    image(imgs[i],x,y,250,280);
+    y+= 280;
+  }  
 }
 
 void draw() {
   //image(img1, 0, 0, img1.width/2, img1.height/2);
+  drawChars(new String[]{"a", "i", "u", "e", "o"});
   fill(255, 12);
   rect(0, 0, width, height);
   fill(75);
