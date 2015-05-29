@@ -41,7 +41,9 @@ void draw() {
 void update(int x, int y) {
  if (overChar(UpperLeftRectX, UpperLeftRectY, rectSize, rectSize) ) {
     charOver = true;
- }
+ }else { 
+      charOver = false;
+    }
 }
 
 void mousePressed() {
