@@ -61,26 +61,31 @@ void charSelection(String[] word){
   */
 }
 
-void drawChars(String[] word){
-  charSelection(word);
+void drawChars(String[] syllables){
+  charSelection(syllables);
   int x = 0;
   int y = 0;
   int i = 0;
-  for ( ; i < 3 && i < word.length; i++){
+  for ( ; i < 3 && i < syllables.length; i++){
     image(imgs[i],x,y,250,280);
     y+= 280;
   }
   x = 1250;
   y = 0;
-  for ( ; i < word.length; i++){
+  for ( ; i < syllables.length; i++){
     image(imgs[i],x,y,250,280);
     y+= 280;
   }  
 }
 
+void drawChars(Word w){
+  String[] syll = w.getSyllables();
+  drawChars(syll); 
+}
+
 void draw() {
   //image(img1, 0, 0, img1.width/2, img1.height/2);
-  drawChars(new String[]{"a", "i", "u", "e", "o"});
+  drawChars(new String[]{"a", "i", "u", "e", "o", "ka"});
   fill(255, 12);
   rect(0, 0, width, height);
   fill(75);
