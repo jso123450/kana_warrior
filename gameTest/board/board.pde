@@ -22,20 +22,41 @@ void setup() {
   MidRightRectY = 280;
   LowerRightRectX = 1250;
   LowerRightRectY = 560;
-  rectColor = 100;  
+  rectColor = 35;  
     
 }
 
 void draw() {
   update(mouseX, mouseY);
   background(51);
+/*
+  if(charOver){
+     fill(255,200,200);
+  }else{
+      fill(255);
+  }
+  stroke(255);
+  */
+  stroke(0);          
+  fill(150); 
   rect(UpperLeftRectX, UpperLeftRectY, rectSize, rectSize);
+  stroke(0);          
+  fill(255); 
   rect(MidLeftRectX, MidLeftRectY, rectSize, rectSize);
+  stroke(0);          
+  fill(150); 
   rect(LowerLeftRectX, LowerLeftRectY, rectSize, rectSize);
+  stroke(0);          
+  fill(255); 
   rect(UpperRightRectX, UpperRightRectY, rectSize, rectSize);
+  stroke(0);          
+  fill(150); 
   rect(MidRightRectX, MidRightRectY, rectSize, rectSize);
+  stroke(0);         
+  fill(255); 
   rect(LowerRightRectX, LowerRightRectY, rectSize, rectSize);
   image(img, 0, 0, img.width/2, img.height/2);
+  
 }
 
 void update(int x, int y) {
