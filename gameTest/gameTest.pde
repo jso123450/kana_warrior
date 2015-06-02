@@ -84,7 +84,7 @@ void draw() {
   ellipse(mouseX, mouseY, 75, 75);
   
   pg.beginDraw();
-  pg.background(0);
+  pg.background(51);
   pg.noFill();
   pg.stroke(255);
   pg.ellipse(mouseX-120, mouseY-60, 60, 60);
