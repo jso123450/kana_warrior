@@ -40,6 +40,8 @@ void setup() {
 void charsSetup(){
  String[] others = {"k","g","s","z","t","d","n","h","b","p","m","r"};
  String[] basicChars = {"a","i","u","e","o"};
+ String[] EndInI = {"ki", "gi", "shi", "ji", "chi", "ni", "hi", "bi", "pi", "mi", "ri"};
+ String[] Y = {"ya", "yi", "yu"};
  for (String character : basicChars)
    chars.add(character);
  for (String firstChar : others){
@@ -56,6 +58,12 @@ void charsSetup(){
          chars.add("dzu");
        else
          chars.add(firstChar + basicChar);
+   }
+   for (String Ys : Y)
+     chars.add(Ys);
+   for (String Is : EndInI){
+     for (String Ys : Y)
+       chars.add(Is + "chiisai" + Ys);
    }
  }
  // irregular ones
