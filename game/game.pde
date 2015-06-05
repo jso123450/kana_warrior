@@ -43,8 +43,20 @@ void charsSetup(){
  for (String character : basicChars)
    chars.add(character);
  for (String firstChar : others){
-   for (String basicChar : basicChars)
-     chars.add(firstChar + basicChar);
+   for (String basicChar : basicChars){
+       if ((firstChar + basicChar).equals("si"))
+         chars.add("shi");
+       if ((firstChar + basicChar).equals("zi"))
+         chars.add("ji");
+       if ((firstChar + basicChar).equals("ti"))
+         chars.add("chi");
+       if ((firstChar + basicChar).equals("tu"))
+         chars.add("tsu");
+       if ((firstChar + basicChar).equals("du"))
+         chars.add("dzu");
+       else
+         chars.add(firstChar + basicChar);
+   }
  }
  // irregular ones
  chars.add("ya");
