@@ -1,0 +1,36 @@
+draw---> draws what you want to see in the game in a top to bottom order like in 
+netlogo
+
+setup---->sets up the variable number assignments
+
+game play:
+
+1. opening screen comes up
+2. instructions/intro
+3. level one lesson
+	characters:
+	a,i,u,e,o,ka,ki,ku,ke,ko
+4. level one start button
+5. level one game
+	words in level one:
+	ie:house
+	kao:face
+	ao:blue
+	aka:red
+	koe:voice
+	ai:love
+	ue:up
+	eki:train station
+6. lists of the words learned in level one
+
+7. level two lesson
+	character:
+	ga,gi,gu,ge,go,sa,shi,su,se,so,za,ji,tzu,ze,zo
+8. level two start button
+9. level two game
+	words in leve two:
+	sushi:sushi
+	kagi:key
+	suki:like
+	
+	
