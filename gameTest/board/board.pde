@@ -8,7 +8,7 @@ color rectColor;
 int rectSize = 280;     // Diameter of rect
 boolean charOver = false;
 PImage img;  // Declare variable "a" of type PImage
-
+PImage opening;
 void setup() {
   size(1530,840);
   img = loadImage("../../pictures/hiragana/a.png"); 
@@ -23,12 +23,19 @@ void setup() {
   LowerRightRectX = 1250;
   LowerRightRectY = 560;
   rectColor = 35;  
-    
+  opening = loadImage("../../pictures/openingScreen.png");
+  background(51);  
 }
 
 void draw() {
+  background(opening);
+   if(mousePressed){
+       background(51);
+   }else {image(opening, 0,0);
+   }
   update(mouseX, mouseY);
-  background(51);
+  //background(51);
+  
 /*
   if(charOver){
      fill(255,200,200);
@@ -37,6 +44,7 @@ void draw() {
   }
   stroke(255);
   */
+  
   stroke(0);          
   fill(150); 
   rect(UpperLeftRectX, UpperLeftRectY, rectSize, rectSize);

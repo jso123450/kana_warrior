@@ -32,5 +32,6 @@ game play:
 	sushi:sushi
 	kagi:key
 	suki:like
-	
-	
+	sekai:world
+	sugi:next
+		
