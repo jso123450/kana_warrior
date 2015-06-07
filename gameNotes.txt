@@ -33,5 +33,6 @@ game play:
 	kagi:key
 	suki:like
 	sekai:world
-	sugi:next
-		
+	gakko:school
+	kasa:umbrella
+	
