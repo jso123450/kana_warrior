@@ -5,6 +5,8 @@ PImage[] imgs;
 PGraphics pg;
 ArrayList<String> chars;
 Random r;
+int level;
+ArrayList<Word> ReberuNoKotoba;
 
 void setup() {
   //img1 = loadImage("../pictures/hiragana/a.png");  
@@ -13,6 +15,34 @@ void setup() {
   chars = new ArrayList<String>();
   imgs = new PImage[6];
   r = new Random();
+  level = 0;
+}
+
+void WordSet(){
+  if (level == 0)
+    //titlescreenstuff
+  if (level == 1){
+    ReberuNoKotoba = new ArrayList<Word>();
+    ReberuNoKotoba.add(new Word("ie"));
+    ReberuNoKotoba.add(new Word("kao"));
+    ReberuNoKotoba.add(new Word("ao"));
+    ReberuNoKotoba.add(new Word("aka"));
+    ReberuNoKotoba.add(new Word("koe"));
+    ReberuNoKotoba.add(new Word("ai"));
+    ReberuNoKotoba.add(new Word("ue"));
+    ReberuNoKotoba.add(new Word("eki"));
+  }
+  if (level == 2){
+    ReberuNoKotoba = new ArrayList<Word>();
+    ReberuNoKotoba.add(new Word("sushi"));
+    ReberuNoKotoba.add(new Word("kagi"));
+    ReberuNoKotoba.add(new Word("suki"));
+    ReberuNoKotoba.add(new Word("sekai"));
+    ReberuNoKotoba.add(new Word("kasa"));
+    ReberuNoKotoba.add(new Word("kesa"));
+    ReberuNoKotoba.add(new Word("kage"));
+    ReberuNoKotoba.add(new Word("ookii"));
+  } 
 }
 
 void charsSetup(){
@@ -21,8 +51,20 @@ void charsSetup(){
  for (String character : basicChars)
    chars.add(character);
  for (String firstChar : others){
-   for (String basicChar : basicChars)
-     chars.add(firstChar + basicChar);
+   for (String basicChar : basicChars){
+       if ((firstChar + basicChar).equals("si"))
+         chars.add("shi");
+       if ((firstChar + basicChar).equals("zi"))
+         chars.add("ji");
+       if ((firstChar + basicChar).equals("ti"))
+         chars.add("chi");
+       if ((firstChar + basicChar).equals("tu"))
+         chars.add("tsu");
+       if ((firstChar + basicChar).equals("du"))
+         chars.add("dzu");
+       else
+         chars.add(firstChar + basicChar);
+   }
  }
  // irregular ones
  chars.add("ya");
@@ -32,7 +74,6 @@ void charsSetup(){
  chars.add("n");
  System.out.println(chars);
 }
-
 
 // word is no longer than 6 characters
 void charSelection(String[] word){

@@ -5,6 +5,10 @@ public class Word{
     private String w;
     private String[] syllables;
 
+    public Word(String oneSyll){
+	syllables[0] = oneSyll;
+    }
+
     public Word(String[] syll){
 	w = buildWord(syll);
     }

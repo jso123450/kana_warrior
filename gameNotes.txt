@@ -25,14 +25,15 @@ game play:
 
 7. level two lesson
 	character:
-	ga,gi,gu,ge,go,sa,shi,su,se,so,za,ji,tzu,ze,zo
+	ga,gi,gu,ge,go,sa,shi,su,se,so,za,ji,zu,ze,zo
 8. level two start button
 9. level two game
-	words in leve two:
+	words in level two:
 	sushi:sushi
 	kagi:key
 	suki:like
 	sekai:world
-	gakko:school
 	kasa:umbrella
-	
+	kesa:this morning
+	kage:shadow
+	ookii:big
