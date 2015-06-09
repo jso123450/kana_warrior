@@ -6,9 +6,9 @@ Helping the world by defeating and learning kana one kana at a timeeeeeee
 - Correctly spell out the word given to you on your level by clicking on the surrounding characters (in Japanese of course!)
 
 # Instructions to Run
-1) Open processing
-2) Open /game/game.pde
-3) Click play :)
+- Open processing
+- Open /game/game.pde
+- Click play :)
 
 # Changelog
 - 5/10 Created git repo
