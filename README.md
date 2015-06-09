@@ -1,6 +1,15 @@
 # kana_warrior by Johnny So & Lian Wong (pd 1)
 Helping the world by defeating and learning kana one kana at a timeeeeeee
 
+# Game Description
+- Learn the NIHONGOS (Japanese) one (or ten) characters at a time!!
+- Correctly spell out the word given to you on your level by clicking on the surrounding characters (in Japanese of course!)
+
+# Instructions to Run
+1) Open processing
+2) Open /game/game.pde
+3) Click play :)
+
 # Changelog
 - 5/10 Created git repo
 - 5/17 Finished uploading picture sources for the hiragana
