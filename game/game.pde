@@ -12,16 +12,15 @@ color BGcolor, newColor;
 int rectSize = 280;
 boolean charOver = false;
 PImage[] imgs;
-PGraphics pg;
+PImage opening;
 ArrayList<String> chars;
 Random r;
-int level;
+double level;
 ArrayList<Word> ReberuNoKotoba;
 Word kotoba;
 
 void setup() {
   size(1530,840);
-  pg = createGraphics(1, 1);
   chars = new ArrayList<String>();
   imgs = new PImage[6];
   r = new Random();
@@ -38,12 +37,11 @@ void setup() {
   LowerRightRectX = 1250;
   LowerRightRectY = 560;
   BGcolor = 35;  
-  newColor = 70;  
+  newColor = 70;
+  opening = loadImage("../pictures/openingScreen.png");  
 }
 
 void WordSet(){
-  if (level == 0)
-    //titlescreenstuff
   if (level == 1){
     ReberuNoKotoba = new ArrayList<Word>();
     ReberuNoKotoba.add(new Word("ie"));
@@ -132,12 +130,25 @@ void drawChars(String[] syllables){
   }  
 }
 
+void draw() {
+    if(level==0){    
+      image(opening, 0,0);
+       if(mousePressed){
+       drawRects();
+       level = 0.5;
+   }else if (level == 0.5){
+       //introdution
+     background(1);
+   }
+    }
+}
+    
 void drawChars(Word w){
   String[] syll = w.getSyllables();
   drawChars(syll); 
 }
 
-void draw() {
+void drawRects() {
   update(mouseX,mouseY);
   stroke(0);          
   fill(150); 
@@ -162,17 +173,6 @@ void draw() {
   rect(0, 0, width, height);
   fill(75);
   noStroke();
-  ellipse(mouseX, mouseY, 75, 75);
-  
-  pg.beginDraw();
-  pg.background(51);
-  pg.noFill();
-  pg.stroke(255);
-  pg.ellipse(mouseX-120, mouseY-60, 60, 60);
-  pg.endDraw();
-  
-  // Draw the offscreen buffer to the screen with image() 
- // image(pg, 120, 60); 
 }
 
 void update(int x, int y) {
