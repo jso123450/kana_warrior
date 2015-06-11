@@ -17,6 +17,7 @@ ArrayList<String> chars;
 Random r;
 int level;
 ArrayList<Word> ReberuNoKotoba;
+Word kotoba;
 
 void setup() {
   size(1530,840);
@@ -25,6 +26,7 @@ void setup() {
   imgs = new PImage[6];
   r = new Random();
   level = 0;
+  kotoba = null;
   MidLeftRectX = 0;
   MidLeftRectY = 280;
   LowerLeftRectX = 0;
@@ -95,6 +97,7 @@ void charsSetup(){
  chars.add("n");
  System.out.println(chars);
 }
+
 // word is no longer than 6 characters
 void charSelection(String[] word){
   int len = word.length;
