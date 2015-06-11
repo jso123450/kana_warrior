@@ -9,6 +9,7 @@ int rectSize = 280;     // Diameter of rect
 boolean charOver = false;
 PImage img;  // Declare variable "a" of type PImage
 PImage opening;
+double level=0;
 void setup() {
   size(1530,840);
   img = loadImage("../../pictures/hiragana/a.png"); 
@@ -28,14 +29,18 @@ void setup() {
 }
 
 void draw() {
-  background(opening);
-   if(mousePressed){
-       background(51);
-   }else {image(opening, 0,0);
+    if(level==0){    
+      image (opening, 0,0);
+       if(mousePressed){
+       drawRects();
+       level = 0.5;
+   }else if (level == 0.5){
+       //introdution
+     background(1);
    }
+    }
   update(mouseX, mouseY);
-  //background(51);
-  
+  //background(51); 
 /*
   if(charOver){
      fill(255,200,200);
@@ -44,7 +49,8 @@ void draw() {
   }
   stroke(255);
   */
-  
+}
+ void drawRects(){
   stroke(0);          
   fill(150); 
   rect(UpperLeftRectX, UpperLeftRectY, rectSize, rectSize);
