@@ -1,4 +1,4 @@
- import java.util.*;
+import java.util.*;
 
 /* ------------------------- VARIABLES ------------------------- */
 // Buttons
@@ -15,14 +15,16 @@ PImage[] imgs;
 PGraphics pg;
 ArrayList<String> chars;
 Random r;
+int level;
+ArrayList<Word> ReberuNoKotoba;
 
 void setup() {
   size(1530,840);
-  //img = loadImage("../../pictures/hiragana/a.png"); 
   pg = createGraphics(1, 1);
   chars = new ArrayList<String>();
   imgs = new PImage[6];
   r = new Random();
+  level = 0;
   MidLeftRectX = 0;
   MidLeftRectY = 280;
   LowerLeftRectX = 0;
@@ -35,6 +37,33 @@ void setup() {
   LowerRightRectY = 560;
   BGcolor = 35;  
   newColor = 70;  
+}
+
+void WordSet(){
+  if (level == 0)
+    //titlescreenstuff
+  if (level == 1){
+    ReberuNoKotoba = new ArrayList<Word>();
+    ReberuNoKotoba.add(new Word("ie"));
+    ReberuNoKotoba.add(new Word("kao"));
+    ReberuNoKotoba.add(new Word("ao"));
+    ReberuNoKotoba.add(new Word("aka"));
+    ReberuNoKotoba.add(new Word("koe"));
+    ReberuNoKotoba.add(new Word("ai"));
+    ReberuNoKotoba.add(new Word("ue"));
+    ReberuNoKotoba.add(new Word("eki"));
+  }
+  if (level == 2){
+    ReberuNoKotoba = new ArrayList<Word>();
+    ReberuNoKotoba.add(new Word("sushi"));
+    ReberuNoKotoba.add(new Word("kagi"));
+    ReberuNoKotoba.add(new Word("suki"));
+    ReberuNoKotoba.add(new Word("sekai"));
+    ReberuNoKotoba.add(new Word("kasa"));
+    ReberuNoKotoba.add(new Word("kesa"));
+    ReberuNoKotoba.add(new Word("kage"));
+    ReberuNoKotoba.add(new Word("ookii"));
+  } 
 }
 
 void charsSetup(){
@@ -99,12 +128,11 @@ void drawChars(String[] syllables){
     y+= 280;
   }  
 }
- void drawChars(Word w){
+
+void drawChars(Word w){
   String[] syll = w.getSyllables();
   drawChars(syll); 
 }
-
-
 
 void draw() {
   update(mouseX,mouseY);
