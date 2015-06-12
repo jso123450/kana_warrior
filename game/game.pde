@@ -17,20 +17,20 @@ int rectSize = 280;
 boolean charOver = false;
 
 // Imgs & Game-Running Related Data
-PImage[] imgs;                                  // the six characters displayed at any given time
-PImage opening;                                 // opening screen
-ArrayList<String> chars;                        // ArrayList of all Japanese sounds
+PImage[] imgs;                             // the six characters displayed at any given time
+PImage opening;                            // opening screen
+ArrayList<String> chars;                   // ArrayList of all Japanese sounds
 Random r;
-double level;
-ArrayList<Word> ReberuNoKotoba;                 // "Level's Words"
-Word kotoba;                                    // "Word"
+double level;                              // if it's 0.5, then it's a lesson
+ArrayList<Word> ReberuNoKotoba;            // "Level's Words"
+Word kotoba;                               // "Word"
 
 void setup() {
   size(1530,840);
   chars = new ArrayList<String>();
   imgs = new PImage[6];
   r = new Random();
-  level = 0;
+  level = 0.0;
   kotoba = null;
   MidLeftRectX = 0;
   MidLeftRectY = 280;
@@ -136,7 +136,7 @@ void charSelection(){
 //changes level accordingly (after all of each level's words have been done)
 void TimeToLevel(){
   if (ReberuNoKotoba.size() == 0){
-    level++;
+    level+= 0.5;
     WordSet();
   }
 }
@@ -159,16 +159,18 @@ void drawChars(String[] syllables){
 }
 
 void draw() {
-    if(level==0){    
-      image(opening, 0,0);
-       if(mousePressed){
-       drawRects();
-       level = 0.5;
-   }else if (level == 0.5){
+  TimeToLevel();
+  charSelection();
+  if (level==0.0){    
+    image(opening, 0,0);
+    if (mousePressed){
+      drawRects();
+      level = 0.5;
+    } else if (level == 0.5){
        //introdution
-     background(1);
+       background(1);
+     }
    }
-    }
 }
     
 void drawChars(Word w){
