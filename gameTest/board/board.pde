@@ -26,32 +26,40 @@ void setup() {
   LowerRightRectY = 560;
   rectColor = 35;  
   opening = loadImage("../../pictures/openingScreen.png");
-  background(51);  
+  //background(51);  
 }
 
 void draw() {
-    if(level==0){    
+  if(level == 1 && lesson == true){
+    background(255);
+  }else if (level == 0.5){
+    background(1);
+    if(mousePressed){
+        level = 1;
+    }
+  }else if(level == 0){
+    image(opening, 0,0);
+    if (keyPressed){
+        level=0.5;
+  }
+  }
+}  
+  
+  
+ /* if(level==0){    
       image (opening, 0,0);
        if(mousePressed){
-       //drawRects();
-       level = 0.5;
+         level = 0.5;
+         draw();
    }else if (level == 0.5){
-       //introdution
-   }else if (level == 1 && lesson = true){
-     
+      background(1);
+   }else if (level == 1 && lesson == true){
+     //lesson 1
     }
     }
   update(mouseX, mouseY);
-  //background(51); 
-/*
-  if(charOver){
-     fill(255,200,200);
-  }else{
-      fill(255);
-  }
-  stroke(255);
-  */
 }
+*/
  void drawRects(){
   background(255);
   stroke(0);          
