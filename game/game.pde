@@ -7,17 +7,23 @@ int MidLeftRectX, MidLeftRectY;
 int LowerLeftRectX, LowerLeftRectY;     
 int UpperRightRectX, UpperRightRectY;      
 int MidRightRectX, MidRightRectY;      
-int LowerRightRectX, LowerRightRectY;    
+int LowerRightRectX, LowerRightRectY;
+
+// Misc
 color BGcolor, newColor;
 int rectSize = 280;
+
+// Booleans
 boolean charOver = false;
-PImage[] imgs;
-PImage opening;
-ArrayList<String> chars;
+
+// Imgs & Game-Running Related Data
+PImage[] imgs;                                  // the six characters displayed at any given time
+PImage opening;                                 // opening screen
+ArrayList<String> chars;                        // ArrayList of all Japanese sounds
 Random r;
 double level;
-ArrayList<Word> ReberuNoKotoba;
-Word kotoba;
+ArrayList<Word> ReberuNoKotoba;                 // "Level's Words"
+Word kotoba;                                    // "Word"
 
 void setup() {
   size(1530,840);
@@ -41,6 +47,8 @@ void setup() {
   opening = loadImage("../pictures/openingScreen.png");  
 }
 
+
+// setting the level's words (8 ea.)
 void WordSet(){
   if (level == 1){
     ReberuNoKotoba = new ArrayList<Word>();
@@ -97,6 +105,7 @@ void charsSetup(){
 }
 
 // word is no longer than 6 characters
+// loads the images corresponding to the syllables
 void charSelection(String[] word){
   int len = word.length;
   for (int i = 0; i < len; i++)
@@ -113,6 +122,25 @@ void charSelection(String[] word){
   }
   */
 }
+
+
+// wrapper for charSelection(String[] word)
+// sets kotoba to a random element from ReberuNoKotoba (& removes it)
+void charSelection(){
+  int rndInt = r.nextInt(ReberuNoKotoba.size());
+  kotoba = ReberuNoKotoba.remove(rndInt);
+  String[] syll = kotoba.getSyllables();
+  charSelection(syll);
+}
+
+//changes level accordingly (after all of each level's words have been done)
+void TimeToLevel(){
+  if (ReberuNoKotoba.size() == 0){
+    level++;
+    WordSet();
+  }
+}
+
 void drawChars(String[] syllables){
   charSelection(syllables);
   int x = 0;
