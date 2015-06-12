@@ -28,6 +28,7 @@ Word kotoba;                               // "Word"
 void setup() {
   size(1530,840);
   chars = new ArrayList<String>();
+  ReberuNoKotoba = new ArrayList<Word>();
   imgs = new PImage[6];
   r = new Random();
   level = 0.0;
@@ -180,6 +181,7 @@ void drawChars(Word w){
 
 void drawRects() {
   update(mouseX,mouseY);
+  background(255);
   stroke(0);          
   fill(150); 
   rect(UpperLeftRectX, UpperLeftRectY, rectSize, rectSize);

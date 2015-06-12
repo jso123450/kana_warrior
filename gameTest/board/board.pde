@@ -10,6 +10,7 @@ boolean charOver = false;
 PImage img;  // Declare variable "a" of type PImage
 PImage opening;
 double level=0;
+boolean lesson = true;
 void setup() {
   size(1530,840);
   img = loadImage("../../pictures/hiragana/a.png"); 
@@ -32,12 +33,13 @@ void draw() {
     if(level==0){    
       image (opening, 0,0);
        if(mousePressed){
-       drawRects();
+       //drawRects();
        level = 0.5;
    }else if (level == 0.5){
        //introdution
-     background(1);
-   }
+   }else if (level == 1 && lesson = true){
+     
+    }
     }
   update(mouseX, mouseY);
   //background(51); 
@@ -51,6 +53,7 @@ void draw() {
   */
 }
  void drawRects(){
+  background(255);
   stroke(0);          
   fill(150); 
   rect(UpperLeftRectX, UpperLeftRectY, rectSize, rectSize);
