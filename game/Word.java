@@ -6,10 +6,12 @@ public class Word{
     private String[] syllables;
 
     public Word(String oneSyll){
+	syllables = new String[6];
 	syllables[0] = oneSyll;
     }
 
     public Word(String[] syll){
+	syllables = new String[6];
 	w = buildWord(syll);
     }
 

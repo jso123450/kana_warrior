@@ -32,7 +32,6 @@ void setup() {
   imgs = new PImage[6];
   r = new Random();
   level = 0.0;
-  kotoba = null;
   MidLeftRectX = 0;
   MidLeftRectY = 280;
   LowerLeftRectX = 0;
@@ -52,7 +51,6 @@ void setup() {
 // setting the level's words (8 ea.)
 void WordSet(){
   if (level == 1){
-    ReberuNoKotoba = new ArrayList<Word>();
     ReberuNoKotoba.add(new Word("ie"));
     ReberuNoKotoba.add(new Word("kao"));
     ReberuNoKotoba.add(new Word("ao"));
@@ -63,7 +61,6 @@ void WordSet(){
     ReberuNoKotoba.add(new Word("eki"));
   }
   if (level == 2){
-    ReberuNoKotoba = new ArrayList<Word>();
     ReberuNoKotoba.add(new Word("sushi"));
     ReberuNoKotoba.add(new Word("kagi"));
     ReberuNoKotoba.add(new Word("suki"));
@@ -107,31 +104,35 @@ void charsSetup(){
 
 // word is no longer than 6 characters
 // loads the images corresponding to the syllables
-void charSelection(String[] word){
-  int len = word.length;
-  for (int i = 0; i < len; i++)
-    imgs[i] = loadImage("../pictures/hiragana/" + word[i] + ".png");
+void charSelection(String[] syll){
+  if (syll != null){
+    int len = syll.length;
+    for (int i = 0; i < len; i++)
+      imgs[i] = loadImage("../pictures/hiragana/" + syll[i] + ".png");
   /*
   for (int j = len; j < imgs.length; j++){
     ArrayList<String> cutChars = chars;
     System.out.println(cutChars);
     for (int k = 0; k < len; k++)
       cutChars.remove(word[k]);
-    //System.out.println(cutChars);
+    //System.out.println(cutCha rs);
     int randInd = r.nextInt(cutChars.size());
     imgs[j] = loadImage("../pictures/hiragana/" + cutChars.get(randInd) + ".png");
   }
   */
+  }
 }
 
 
 // wrapper for charSelection(String[] word)
 // sets kotoba to a random element from ReberuNoKotoba (& removes it)
 void charSelection(){
-  int rndInt = r.nextInt(ReberuNoKotoba.size());
-  kotoba = ReberuNoKotoba.remove(rndInt);
-  String[] syll = kotoba.getSyllables();
-  charSelection(syll);
+  if (ReberuNoKotoba.size() > 0){
+    int rndInt = r.nextInt(ReberuNoKotoba.size());
+    kotoba = ReberuNoKotoba.remove(rndInt);
+    String[] syll = kotoba.getSyllables();
+    charSelection(syll);
+  }
 }
 
 //changes level accordingly (after all of each level's words have been done)
@@ -160,8 +161,8 @@ void drawChars(String[] syllables){
 }
 
 void draw() {
-  TimeToLevel();
-  charSelection();
+  //TimeToLevel();
+  //charSelection();
   if (level==0.0){    
     image(opening, 0,0);
     if (mousePressed){
