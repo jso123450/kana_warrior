@@ -39,6 +39,10 @@ void draw() {
     }
   }else if(level == 0){
     image(opening, 0,0);
+    textSize(72);
+    //textAlign(CENTER, CENTER);
+     text("(Press any key to continue)", 300 ,490);
+     fill(0,102,153,51);
     if (keyPressed){
         level=0.5;
   }
