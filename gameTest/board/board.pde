@@ -8,7 +8,7 @@ color rectColor;
 int rectSize = 280;     // Diameter of rect
 boolean charOver = false;
 PImage img;  // Declare variable "a" of type PImage
-PImage opening;
+PImage opening, intro;
 double level=0;
 boolean lesson = true;
 void setup() {
@@ -26,21 +26,20 @@ void setup() {
   LowerRightRectY = 560;
   rectColor = 35;  
   opening = loadImage("../../pictures/openingScreen.png");
-  //background(51);  
+  intro = loadImage("../../pictures/introScreen.png");
 }
 
 void draw() {
   if(level == 1 && lesson == true){
     background(255);
   }else if (level == 0.5){
-    background(1);
+    image(intro, 0,0);
     if(mousePressed){
         level = 1;
     }
   }else if(level == 0){
     image(opening, 0,0);
     textSize(72);
-    //textAlign(CENTER, CENTER);
      text("(Press any key to continue)", 300 ,490);
      fill(0,102,153,51);
     if (keyPressed){

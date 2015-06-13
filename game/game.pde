@@ -15,10 +15,11 @@ int rectSize = 280;
 
 // Booleans
 boolean charOver = false;
+boolean lesson = true;
 
 // Imgs & Game-Running Related Data
 PImage[] imgs;                             // the six characters displayed at any given time
-PImage opening;                            // opening screen
+PImage opening, intro;                     // opening screen
 ArrayList<String> chars;                   // ArrayList of all Japanese sounds
 Random r;
 double level;                              // if it's 0.5, then it's a lesson
@@ -44,7 +45,8 @@ void setup() {
   LowerRightRectY = 560;
   BGcolor = 35;  
   newColor = 70;
-  opening = loadImage("../pictures/openingScreen.png");  
+  opening = loadImage("../pictures/openingScreen.png");
+  intro = loadImage("../pictures/introScreen.png");  
 }
 
 
@@ -163,17 +165,23 @@ void drawChars(String[] syllables){
 void draw() {
   //TimeToLevel();
   //charSelection();
-  if (level==0.0){    
+   if(level == 1 && lesson == true){
+    background(255);
+  }else if (level == 0.5){
+    image(intro, 0,0);
+    if(mousePressed){
+        level = 1;
+    }
+  }else if(level == 0){
     image(opening, 0,0);
-    if (mousePressed){
-      drawRects();
-      level = 0.5;
-    } else if (level == 0.5){
-       //introdution
-       background(1);
-     }
-   }
-}
+    textSize(72);
+     text("(Press any key to continue)", 300 ,490);
+     fill(0,102,153,51);
+    if (keyPressed){
+        level=0.5;
+  }
+  }
+} 
     
 void drawChars(Word w){
   String[] syll = w.getSyllables();
