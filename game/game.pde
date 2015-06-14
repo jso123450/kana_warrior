@@ -134,6 +134,7 @@ void charSelection(String[] syll){
 
 // wrapper for charSelection(String[] word)
 // sets kotoba to a random element from ReberuNoKotoba (& removes it)
+// & loads the imgs instasnce variable
 void charSelection(){
   if (ReberuNoKotoba.size() > 0){
     int rndInt = r.nextInt(ReberuNoKotoba.size());
@@ -154,6 +155,8 @@ void TimeToLevel(){
   }
 }
 
+
+//draws the characters loaded (in imgs[])
 void drawChars(String[] syllables){
   //charSelection(syllables);
   int x = 0;
@@ -172,12 +175,12 @@ void drawChars(String[] syllables){
     y+= 280;
   }  
 }
-    
+
+// Wrappers for drawChars    
 void drawChars(Word w){
   String[] syll = w.getSyllables();
   drawChars(syll); 
 }
-
 
 void drawChars(){
   drawChars(kotoba);
