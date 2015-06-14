@@ -32,6 +32,22 @@ int time;                                  // elapsed time
 int wait;                                  // wait/delay time
 boolean cont;                              // valid to continue
 
+/* LEVEL LESSONS */
+/*
+  Level 01: a   i   u   e   o   ka
+  Level 03: ki  ku  ke  ko  ga  gi
+  Level 05: gu  ge  go  sa  shi su
+  Level 07: se  so  za  ji  zu  ze
+  Level 09: zo  ta  chi tsu te  to
+  Level 11: da  di  dzu de  do  na
+  Level 13: ni  nu  ne  no  ha  hi
+  Level 15: hu  he  ho  ba  bi  bu
+  Level 17: be  bo  pa  pi  pu  pe
+  Level 19: po  ma  mi  mu  me  mo
+  Level 21: ra  ri  ru  re  ro  ya
+  Level 23: yu  yo  wa  n
+*/
+
 /* -------------------------  SETUP ------------------------- */
 
 void setup() {
@@ -240,6 +256,78 @@ void drawChars(String[] syllables){
   }  
 }
 
+void drawLessons(String[] syllables, int whichLevel){
+  String[] characters = new String[6];
+  if (whichLevel == 1)
+    characters = new String[]{"a","i","u","e","o","ka"};
+  if (whichLevel == 3)
+    characters = new String[]{"ki","ku","ke","ko","ga","gi"};
+  if (whichLevel == 5)
+    characters = new String[]{"gu","ge","go","sa","shi","su"};
+  if (whichLevel == 7)
+    characters = new String[]{"se","so","za","ji","zu","ze"};
+  if (whichLevel == 9)
+    characters = new String[]{"zo","ta","chi","tsu","te","to"};
+  if (whichLevel == 11)
+    characters = new String[]{"da","di","dzu","de","do","na"};
+  if (whichLevel == 13)
+    characters = new String[]{"ni","nu","ne","no","ha","hi"};
+  if (whichLevel == 15)
+    characters = new String[]{"hu","he","ho","ba","bi","bu"};
+  if (whichLevel == 17)
+    characters = new String[]{"be","bo","pa","pi","pu","pe"};
+  if (whichLevel == 19)
+    characters = new String[]{"po","ma","mi","mu","me","mo"};
+  if (whichLevel == 21)
+    characters = new String[]{"ra","ri","ru","re","ro","ya"};
+  if (whichLevel == 23)
+    characters = new String[]{"yu","yo","wa","n"};
+  drawRects();
+  charSelection(syllables);
+  drawChars(syllables);
+  image(startbutton,600,300,300,300);
+  textSize(33);
+  text("Here are six (more) characters of hiragana", 400, 100);
+  if(mousePressed){
+    if (mouseX < 250){
+      if (mouseY < 280){
+        image(arrow,280,0);
+        text("this is '" + characters[0] + "'", 300,280);
+      }
+      else if (mouseY < 560){
+        image(arrow,280,280);
+        text("this is '" + characters[1] + "'",300,560);
+      }
+      else if (mouseY > 560){
+        image(arrow,280,560);
+        text("this is '" + characters[2] + "'",300,830);
+      }
+    }
+    // need flippity floppity arrow pic right here
+    if (mouseX > 1250){
+      if (mouseY < 280){
+        image(arrow,1000,0);
+        text("this is '" + characters[3] + "'",1100,280); 
+      }
+      else if (mouseY < 560){
+        image(arrow,1000,280);
+        text("this is '" + characters[4] + "'",1100,560);
+      }
+      else if (mouseY > 560){
+        image(arrow,1000,560);
+        text("this is '" + characters[5] + "'",1075,830);
+      }
+    }
+    if (mouseX > 600 && mouseX < 900 && mouseY > 300 && mouseY < 600){
+      level++;
+      WordSet();
+      charSelection();
+      drawChars();
+      drawRects();
+    }
+  }
+}
+
 void draw(){
   if (level == -1){
     image(opening,0,0);
@@ -257,51 +345,8 @@ void draw(){
     }
   }
   else if (level == 1){
-    drawRects();
-    charSelection(new String[]{"a", "i", "u", "e", "o", "ka"});
-    drawChars(new String[]{"a", "i", "u", "e", "o", "ka"});
-    //System.out.println("hi");
-    image(startbutton,600,300,300,300);
-    textSize(33);
-    text("Here are the first 6 characters of hiragana", 400, 100);
-    if(mousePressed){
-        if (mouseX < 250){
-          if (mouseY < 280){
-            image(arrow,280,0);
-            text("this is 'a'", 300,280);
-          }
-          else if (mouseY < 560){
-            image(arrow,280,280);
-            text("this is 'i'",300,560);
-          }
-          else if (mouseY > 560){
-            image(arrow,280,560);
-            text("this is 'u'",300,830);
-          }
-        }
-        // need flippity floppity arrow pic right here
-        if (mouseX > 1250){
-          if (mouseY < 280){
-            image(arrow,1000,0);
-            text("this is 'e'",1100,280); 
-          }
-          else if (mouseY < 560){
-            image(arrow,1000,280);
-            text("this is 'o'",1100,560);
-          }
-          else if (mouseY > 560){
-            image(arrow,1000,560);
-            text("this is 'ka'",1075,830);
-          }
-        }
-        if (mouseX > 600 && mouseX < 900 && mouseY > 300 && mouseY < 600){
-          level++;
-          WordSet();
-          charSelection();
-          drawChars();
-          drawRects();
-        }
-    }
+    //a,i,u,e,o,ka
+    drawLessons(new String[]{"a","i","u","e","o"},1);
   }
   else if (level == 3){
     //ki,ku,ke,ko,ga,gi
