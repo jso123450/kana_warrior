@@ -66,6 +66,7 @@ void setup() {
   whichChar = 0;
   currentWord = "";
   wait = 1000;
+  cont = false;
 }
 
 // setting the level's words (8 ea.)
@@ -136,8 +137,20 @@ void TimeToLevel(){
   if (ReberuNoKotoba.size() == 0){
     level+= 0.5;
     resetRandCharInd();
-    WordSet();
+    resetDisplayedChars();
+    resetCurrentWord();
+    drawRects();
   }
+}
+
+void TimeToContinue(){
+  if (currentWord.equals(kotoba.getWord())){
+    resetRandCharInd();
+    resetDisplayedChars();
+    resetCurrentWord();
+    drawRects();
+    charSelection();
+  }  
 }
 
 void resetRandCharInd(){
@@ -151,7 +164,9 @@ void resetDisplayedChars(){
 
 void resetCurrentWord(){
   currentWord = "";
+  whichChar = 0;
 }
+
 
 /* ------------------------- CHARACTER SELECTIONS ------------------------- */
 
@@ -297,9 +312,12 @@ void draw(){
     text("Spelled",500,300);
     text(currentWord,600,400);
     image(continuebutton,600,600,250,100);
+    if (mousePressed && mouseX > 600 && mouseX < 850 && mouseY > 600 && mouseY < 700)
+      TimeToContinue();
     if (mouseX < 250){
       if (mouseY < 280){
         if (mousePressed){
+          System.out.println(displayedChars[0]);
           drawRects();
           if (correctChar(displayedChars[0])){
             text("CORRECT!",600,800);
@@ -362,6 +380,7 @@ void draw(){
       }
     }
     drawChars();
+    TimeToLevel();
   }
 }
 
