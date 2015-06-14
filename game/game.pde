@@ -20,7 +20,7 @@ boolean lesson = true;
 // Imgs & Game-Running Related Data
 PImage[] imgs;                             // the six characters displayed at any given time
 String[] displayedChars;                   // which characters are currently on the screen
-PImage opening, intro, arrow, startbutton;                     
+PImage opening, intro, arrow, startbutton, continuebutton;                     
 ArrayList<String> chars;                   // ArrayList of all Japanese sounds
 Random r;
 double level;                              // if it's a whole #, then it's a lesson
@@ -29,6 +29,9 @@ Word kotoba;                               // "Word"
 int[] randCharInd;                         // indices of the random characaters used
 int whichChar;                             // which syllable of the word is currently being spelled
 String currentWord;                        // the part of the current word spelled correctly
+int time;                                  // elapsed time
+int wait;                                  // wait/delay time
+boolean cont;                              // valid to continue
 
 /* -------------------------  SETUP ------------------------- */
 
@@ -55,12 +58,14 @@ void setup() {
   intro = loadImage("../pictures/introScreen.png"); 
   arrow = loadImage("../pictures/arrow.png");
   startbutton = loadImage("../pictures/start_button.png");
+  continuebutton = loadImage("../pictures/continue_button.png");
   randCharInd = new int[6];
   charsSetup();
   resetRandCharInd();
   displayedChars = new String[6];
   whichChar = 0;
   currentWord = "";
+  wait = 1000;
 }
 
 // setting the level's words (8 ea.)
@@ -287,11 +292,15 @@ void draw(){
   }
   else if (level == 1.5){
     textSize(100);
-    text("Current Round: " + kotoba.getWord(),500,300);
-    text("Spelled: " + currentWord,500,600);
+    text("Current Round",400,100);
+    text(kotoba.getWord(),600,200);
+    text("Spelled",500,300);
+    text(currentWord,600,400);
+    image(continuebutton,600,600,250,100);
     if (mouseX < 250){
       if (mouseY < 280){
         if (mousePressed){
+          drawRects();
           if (correctChar(displayedChars[0])){
             text("CORRECT!",600,800);
             currentWord+= displayedChars[0];
@@ -299,8 +308,9 @@ void draw(){
           }
         }
       }
-      if (mouseY < 560){
+      else if (mouseY < 560){
         if (mousePressed){
+          drawRects();
           if (correctChar(displayedChars[1])){
             text("CORRECT!",600,800);
             currentWord+= displayedChars[1];
@@ -308,11 +318,44 @@ void draw(){
           }
         }
       }
-      if (mouseY > 560){
+      else if (mouseY > 560){
         if (mousePressed){
+          drawRects();
           if (correctChar(displayedChars[2])){
             text("CORRECT!",600,800);
             currentWord+= displayedChars[2];
+            whichChar++;
+          }
+        }
+      }
+    }
+    else if (mouseX > 1250){
+      if (mouseY < 280){
+        if (mousePressed){
+          drawRects();
+          if (correctChar(displayedChars[3])){
+            text("CORRECT!",600,800);
+            currentWord+= displayedChars[3];
+            whichChar++;
+          }
+        }
+      }
+      else if (mouseY < 560){
+        if (mousePressed){
+          drawRects();
+          if (correctChar(displayedChars[4])){
+            text("CORRECT!",600,800);
+            currentWord+= displayedChars[4];
+            whichChar++;
+          }
+        }
+      }
+      else if (mouseY > 560){
+        if (mousePressed){
+          drawRects();
+          if (correctChar(displayedChars[5])){
+            text("CORRECT!",600,800);
+            currentWord+= displayedChars[5];
             whichChar++;
           }
         }
