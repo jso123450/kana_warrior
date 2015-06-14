@@ -114,6 +114,8 @@ void charSelection(String[] syll){
     for (int i = 0; i < len; i++){
       if (syll[i] != null)
         imgs[i] = loadImage("../pictures/hiragana/" + syll[i] + ".png");
+      else
+        syll[i] = null;
     }
   /*
   for (int j = len; j < imgs.length; j++){
@@ -138,8 +140,8 @@ void charSelection(){
     kotoba = ReberuNoKotoba.remove(rndInt);
     System.out.println(kotoba.getWord());
     String[] syll = kotoba.getSyllables();
+    System.out.println(syll[0]);
     charSelection(syll);
-    //System.out.println(syll.toString());
     //drawChars(syll);
   }
 }
@@ -153,20 +155,32 @@ void TimeToLevel(){
 }
 
 void drawChars(String[] syllables){
-  charSelection();
+  //charSelection(syllables);
   int x = 0;
   int y = 0;
   int i = 0;
   for ( ; i < 3 && i < syllables.length; i++){
-    image(imgs[i],x,y,250,280);
+    if (imgs[i] != null)
+      image(imgs[i],x,y,250,280);
     y+= 280;
   }
   x = 1250;
   y = 0;
   for ( ; i < syllables.length; i++){
-    image(imgs[i],x,y,250,280);
+    if (imgs[i] != null)
+      image(imgs[i],x,y,250,280);
     y+= 280;
   }  
+}
+    
+void drawChars(Word w){
+  String[] syll = w.getSyllables();
+  drawChars(syll); 
+}
+
+
+void drawChars(){
+  drawChars(kotoba);
 }
 
 void draw() {
@@ -174,6 +188,9 @@ void draw() {
   //charSelection();
    if(level == 1 && lesson == true){
     drawRects();
+    charSelection(new String[]{"a", "i", "u", "e", "o", "ka"});
+    drawChars(new String[]{"a", "i", "u", "e", "o", "ka"});
+    //System.out.println("hi");
     image(startbutton,600,300,300,300);
     textSize(33);
     text("Here are the first 6 characters of hiragana", 400, 100);
@@ -212,13 +229,14 @@ void draw() {
           lesson = false;
           // how to make it all white?
           WordSet();
+          charSelection();
           drawChars();
           drawRects();
         }
     }
   }
   else if (level == 1.5){
-    //image(imgs[5],400,400,400,400);
+    image(imgs[5],400,400,400,400);
     drawChars();
     //System.out.println(kotoba.getSyllables()[0]);
     //System.out.println(ReberuNoKotoba);
@@ -245,15 +263,6 @@ void draw() {
     }
   }
 } 
-    
-void drawChars(Word w){
-  String[] syll = w.getSyllables();
-  drawChars(syll); 
-}
-
-void drawChars(){
-  drawChars(kotoba);
-}
 
 void drawRects() {
   update(mouseX,mouseY);
@@ -276,7 +285,7 @@ void drawRects() {
   stroke(0);         
   fill(255); 
   rect(LowerRightRectX, LowerRightRectY, rectSize, rectSize);
-  drawChars(new String[]{"a", "i", "u", "e", "o", "ka"});
+  //drawChars(new String[]{"a", "i", "u", "e", "o", "ka"});
   fill(255, 12);
   rect(0, 0, width, height);
   fill(75);

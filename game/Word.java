@@ -13,6 +13,7 @@ public class Word{
     public Word(String[] syll){
 	syllables = new String[6];
 	w = buildWord(syll);
+        buildSyll(syll);
     }
 
     public Word(String w, String[] syll){
@@ -25,6 +26,11 @@ public class Word{
 	for (String s : syll)
 	    builtWord+= s;
 	return builtWord;
+    }
+    
+    public void buildSyll(String[] syll){
+      for (int i = 0; i < syll.length; i++)
+        syllables[i] = syll[i]; 
     }
 
     /* --------------------------- METHODS --------------------------- */
