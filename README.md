@@ -2,7 +2,7 @@
 Helping the world by defeating and learning kana one kana at a timeeeeeee
 
 # Game Description
-- Learn the NIHONGOS (Japanese) one (or ten) characters at a time!!
+- Learn the NIHONGOS (Japanese) one (or six) characters at a time!!
 - Correctly spell out the word given to you on your level by clicking on the surrounding characters (in Japanese of course!)
 
 # Instructions to Run
