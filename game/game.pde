@@ -136,8 +136,9 @@ void charSelection(){
   if (ReberuNoKotoba.size() > 0){
     int rndInt = r.nextInt(ReberuNoKotoba.size());
     kotoba = ReberuNoKotoba.remove(rndInt);
+    System.out.println(kotoba.getWord());
     String[] syll = kotoba.getSyllables();
-    //charSelection(syll);
+    charSelection(syll);
     //System.out.println(syll.toString());
     //drawChars(syll);
   }
@@ -152,7 +153,7 @@ void TimeToLevel(){
 }
 
 void drawChars(String[] syllables){
-  charSelection(syllables);
+  charSelection();
   int x = 0;
   int y = 0;
   int i = 0;
@@ -211,15 +212,15 @@ void draw() {
           lesson = false;
           // how to make it all white?
           WordSet();
-          charSelection();
           drawChars();
           drawRects();
         }
     }
   }
   else if (level == 1.5){
+    //image(imgs[5],400,400,400,400);
     drawChars();
-    System.out.println(kotoba.getSyllables()[0]);
+    //System.out.println(kotoba.getSyllables()[0]);
     //System.out.println(ReberuNoKotoba);
     /*
     WordSet();
@@ -237,11 +238,11 @@ void draw() {
   else if(level == 0){
     image(opening, 0,0);
     textSize(72);
-     text("(Press any key to continue)",300,490);
-     fill(0,102,153,51);
+    text("(Press any key to continue)",300,490);
+    fill(0,102,153,51);
     if (keyPressed){
         level=0.5;
-  }
+    }
   }
 } 
     
