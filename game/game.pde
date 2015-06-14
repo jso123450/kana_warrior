@@ -65,14 +65,14 @@ void WordSet(){
     ReberuNoKotoba.add(new Word(new String[]{"e","ki"}));
   }
   if (level == 2.5){
-    ReberuNoKotoba.add(new Word("sushi"));
-    ReberuNoKotoba.add(new Word("kagi"));
-    ReberuNoKotoba.add(new Word("suki"));
-    ReberuNoKotoba.add(new Word("sekai"));
-    ReberuNoKotoba.add(new Word("kasa"));
-    ReberuNoKotoba.add(new Word("kesa"));
-    ReberuNoKotoba.add(new Word("kage"));
-    ReberuNoKotoba.add(new Word("ookii"));
+    ReberuNoKotoba.add(new Word(new String[]{"su","shi"}));
+    ReberuNoKotoba.add(new Word(new String[]{"ka","gi"}));
+    ReberuNoKotoba.add(new Word(new String[]{"su","ki"}));
+    ReberuNoKotoba.add(new Word(new String[]{"se","kai"}));
+    ReberuNoKotoba.add(new Word(new String[]{"ka","sa"}));
+    ReberuNoKotoba.add(new Word(new String[]{"ke","sa"}));
+    ReberuNoKotoba.add(new Word(new String[]{"ka","ge"}));
+    ReberuNoKotoba.add(new Word(new String[]{"o","o","ki","i"}));
   } 
 }
 
