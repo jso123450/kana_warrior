@@ -98,9 +98,19 @@ void WordSet(){
   }
   if (level == 6){
     ReberuNoKotoba.add(new Word(new String[]{"su","ki"}));
-    ReberuNoKotoba.add(new Word(new String[]{"se","ka", "i"}));
+    ReberuNoKotoba.add(new Word(new String[]{"ka","ge"}));
     ReberuNoKotoba.add(new Word(new String[]{"ka","sa"}));
   } 
+   if (level == 8){
+    ReberuNoKotoba.add(new Word(new String[]{"a","ji"}));
+    ReberuNoKotoba.add(new Word(new String[]{"se","ka", "i"}));
+    ReberuNoKotoba.add(new Word(new String[]{"o","o","ki","i"}));
+   }
+    if (level == 10){
+    ReberuNoKotoba.add(new Word(new String[]{"chi","zu"}));
+    ReberuNoKotoba.add(new Word(new String[]{"chi","ka", "te", "tsu"}));
+    ReberuNoKotoba.add(new Word(new String[]{"so","to"}));
+    }
 }
 
 void charsSetup(){
@@ -359,7 +369,8 @@ void draw(){
      drawLessons(new String[] {"se" , "so" , "za" , "ji" , "zu" , "ze", 7});
   }
   else if (level == 9){
-    //zo,ta,chi,tsu,te,to  
+    //zo,ta,chi,tsu,te,to
+    drawLessons(new String[] {"zo" , "ta" , "chi" , "tsu" , "te" , "to", 9});  
   }
   else if (level == 11){
     //da,di,dzu,de,do,na 
