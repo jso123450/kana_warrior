@@ -15,7 +15,6 @@ int rectSize = 280;
 
 // Booleans
 boolean charOver = false;
-boolean lesson = true;
 
 // Imgs & Game-Running Related Data
 PImage[] imgs;                             // the six characters displayed at any given time
@@ -257,7 +256,7 @@ void draw(){
       level++;
     }
   }
-  else if (level == 1 && lesson == true){
+  else if (level == 1){
     drawRects();
     charSelection(new String[]{"a", "i", "u", "e", "o", "ka"});
     drawChars(new String[]{"a", "i", "u", "e", "o", "ka"});
@@ -297,7 +296,6 @@ void draw(){
         }
         if (mouseX > 600 && mouseX < 900 && mouseY > 300 && mouseY < 600){
           level++;
-          lesson = false;
           WordSet();
           charSelection();
           drawChars();
@@ -305,7 +303,40 @@ void draw(){
         }
     }
   }
-  else if (level == 2){
+  else if (level == 3){
+    //ki,ku,ke,ko,ga,gi
+  }
+  else if (level == 5){
+    //gu,ge,go,sa,shi,su
+  }
+  else if (level == 7){
+    //se,so,za,ji,zu,ze
+  }
+  else if (level == 9){
+    //zo,ta,chi,tsu,te,to  
+  }
+  else if (level == 11){
+    //da,di,dzu,de,do,na 
+  }
+  else if (level == 13){
+    //ni,nu,ne,no,ha,hi
+  }
+  else if (level == 15){
+    //hu,he,ho,ba,bi,bu
+  }
+  else if (level == 17){
+    //be,bo,pa,pi,pu,pe
+  }
+  else if (level == 19){
+    //po,ma,mi,mu,me,mo
+  }
+  else if (level == 21){
+    //ra,ri,ru,re,ro,ya
+  }
+  else if (level == 23){
+    //yu,yo,wa,n
+  }
+  else if (level % 2 == 0){
     textSize(100);
     text("Current Round",400,100);
     text(kotoba.getWord(),600,200);
