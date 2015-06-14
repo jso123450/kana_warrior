@@ -55,14 +55,14 @@ void setup() {
 // setting the level's words (8 ea.)
 void WordSet(){
   if (level == 1.5){
-    ReberuNoKotoba.add(new Word("ie"));
-    ReberuNoKotoba.add(new Word("kao"));
-    ReberuNoKotoba.add(new Word("ao"));
-    ReberuNoKotoba.add(new Word("aka"));
-    ReberuNoKotoba.add(new Word("koe"));
-    ReberuNoKotoba.add(new Word("ai"));
-    ReberuNoKotoba.add(new Word("ue"));
-    ReberuNoKotoba.add(new Word("eki"));
+    ReberuNoKotoba.add(new Word(new String[]{"i","e"}));
+    ReberuNoKotoba.add(new Word(new String[]{"ka","o"}));
+    ReberuNoKotoba.add(new Word(new String[]{"a","o"}));
+    ReberuNoKotoba.add(new Word(new String[]{"a","ka"}));
+    ReberuNoKotoba.add(new Word(new String[]{"ko","e"}));
+    ReberuNoKotoba.add(new Word(new String[]{"a","i"}));
+    ReberuNoKotoba.add(new Word(new String[]{"u","e"}));
+    ReberuNoKotoba.add(new Word(new String[]{"e","ki"}));
   }
   if (level == 2.5){
     ReberuNoKotoba.add(new Word("sushi"));
@@ -138,7 +138,8 @@ void charSelection(){
     kotoba = ReberuNoKotoba.remove(rndInt);
     String[] syll = kotoba.getSyllables();
     //charSelection(syll);
-    drawChars(syll);
+    //System.out.println(syll.toString());
+    //drawChars(syll);
   }
 }
 
@@ -209,19 +210,27 @@ void draw() {
           level = 1.5;
           lesson = false;
           // how to make it all white?
-          clear();  
+          WordSet();
+          charSelection();
+          drawChars();
+          drawRects();
         }
     }
   }
   else if (level == 1.5){
-    WordSet();
+    drawChars();
+    System.out.println(kotoba.getSyllables()[0]);
     //System.out.println(ReberuNoKotoba);
-    //charSelection();
+    /*
+    WordSet();
+    System.out.println(ReberuNoKotoba);
+    charSelection();
     drawRects();
+    */
   }
   else if (level == 0.5){
     image(intro, 0,0);
-    if(mousePressed){
+    if (mousePressed){
         level = 1;
     }
   }
@@ -239,6 +248,10 @@ void draw() {
 void drawChars(Word w){
   String[] syll = w.getSyllables();
   drawChars(syll); 
+}
+
+void drawChars(){
+  drawChars(kotoba);
 }
 
 void drawRects() {
