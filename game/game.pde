@@ -19,13 +19,15 @@ boolean lesson = true;
 
 // Imgs & Game-Running Related Data
 PImage[] imgs;                             // the six characters displayed at any given time
+String[] displayedChars;                   // which characters are currently on the screen
 PImage opening, intro, arrow, startbutton;                     
 ArrayList<String> chars;                   // ArrayList of all Japanese sounds
 Random r;
 double level;                              // if it's a whole #, then it's a lesson
 ArrayList<Word> ReberuNoKotoba;            // "Level's Words"
 Word kotoba;                               // "Word"
-int[] randomIndices;                       // the random indices of each syllable
+int[] randCharInd;                         // indices of the random characaters used
+int whichChar;                             // which syllable of the word is currently being spelled
 
 /* -------------------------  SETUP ------------------------- */
 
@@ -52,7 +54,11 @@ void setup() {
   intro = loadImage("../pictures/introScreen.png"); 
   arrow = loadImage("../pictures/arrow.png");
   startbutton = loadImage("../pictures/start_button.png");
-  randomIndices = new int[6];
+  randCharInd = new int[6];
+  charsSetup();
+  resetRandCharInd();
+  displayedChars = new String[6];
+  whichChar = 0;
 }
 
 // setting the level's words (8 ea.)
@@ -86,18 +92,27 @@ void charsSetup(){
    chars.add(character);
  for (String firstChar : others){
    for (String basicChar : basicChars){
-       if ((firstChar + basicChar).equals("si"))
-         chars.add("shi");
-       if ((firstChar + basicChar).equals("zi"))
-         chars.add("ji");
-       if ((firstChar + basicChar).equals("ti"))
-         chars.add("chi");
-       if ((firstChar + basicChar).equals("tu"))
-         chars.add("tsu");
-       if ((firstChar + basicChar).equals("du"))
-         chars.add("dzu");
-       else
-         chars.add(firstChar + basicChar);
+     chars.add(firstChar + basicChar);
+     if ((firstChar + basicChar).equals("si")){
+       chars.remove(firstChar + basicChar);
+       chars.add("shi");
+     }
+     if ((firstChar + basicChar).equals("zi")){
+       chars.remove(firstChar + basicChar);
+       chars.add("ji");
+     }
+     if ((firstChar + basicChar).equals("ti")){
+       chars.remove(firstChar + basicChar);
+       chars.add("chi");
+     }
+     if ((firstChar + basicChar).equals("tu")){
+       chars.remove(firstChar + basicChar);
+       chars.add("tsu");
+     }
+     if ((firstChar + basicChar).equals("du")){
+       chars.remove(firstChar + basicChar);
+       chars.add("dzu");
+     }
    }
  }
  // irregular ones
@@ -113,68 +128,43 @@ void charsSetup(){
 void TimeToLevel(){
   if (ReberuNoKotoba.size() == 0){
     level+= 0.5;
+    resetRandCharInd();
     WordSet();
   }
 }
 
-void resetIndices(){
-  for (int i = 0; i < randomIndices.length; i++)
-    randomIndices[i] = -1; 
+void resetRandCharInd(){
+  for (int i = 0; i < randCharInd.length; i++)
+    randCharInd[i] = -1; 
+}
+
+void resetDisplayedChars(){
+  displayedChars = new String[6];
 }
 
 /* ------------------------- CHARACTER SELECTIONS ------------------------- */
 
 // word is no longer than 6 characters
 // loads the images corresponding to the syllables
-void charSelectionRandom(String[] syll){
-  if (syll != null){
-    imgs = new PImage[6];
-    ArrayList<Integer> indices = new ArrayList<Integer>();
-    for (int i = 0; i < 6; i++)
-      indices.add(i);
-    int len = syll.length;
-    for (int i = 0; i < len; i++){
-      if (randomIndices[i] == -1){
-        int rndInt = r.nextInt(indices.size());
-        int rndIndex = indices.remove(rndInt);
-        randomIndices[i] = rndIndex;
-        if (syll[i] != null)
-          imgs[rndIndex] = loadImage("../pictures/hiragana/" + syll[i] + ".png");
-        else {
-          int charsRndIndex = r.nextInt(chars.size());
-          imgs[rndIndex] = loadImage("../pictures/hiragana/" + chars.get(charsRndIndex) + ".png");
-        }
-      }
-      else {
-        if (syll[i] != null)
-          imgs[randomIndices[i]] = loadImage("../pictures/hiragana/" + syll[i] + ".png");
-        else
-          imgs[randomIndices[i]] = loadImage("../pictures/hiragana/" + syll[i] + ".png");  
-      }
-    }
-  }
-}
 
 void charSelection(String[] syll){
   if (syll != null){
     int len = syll.length;
     for (int i = 0; i < len; i++){
-      if (syll[i] != null)
+      if (syll[i] != null){
+        displayedChars[i] = syll[i];
         imgs[i] = loadImage("../pictures/hiragana/" + syll[i] + ".png");
-      else
-        imgs[i] = null;
+      }
+      else {
+        System.out.println(randCharInd[i]);
+        if (randCharInd[i] == -1){
+          int rndInd = r.nextInt(chars.size());
+          randCharInd[i] = rndInd;
+        }
+        displayedChars[i] = chars.get(randCharInd[i]);
+        imgs[i] = loadImage("../pictures/hiragana/" + chars.get(randCharInd[i]) + ".png");
+      }
     }
-      /*
-  for (int j = len; j < imgs.length; j++){
-    ArrayList<String> cutChars = chars;
-    System.out.println(cutChars);
-    for (int k = 0; k < len; k++)
-      cutChars.remove(word[k]);
-    //System.out.println(cutCha rs);
-    int randInd = r.nextInt(cutChars.size());
-    imgs[j] = loadImage("../pictures/hiragana/" + cutChars.get(randInd) + ".png");
-  }
-  */
   }
 }
 
@@ -182,14 +172,14 @@ void charSelection(String[] syll){
 // wrapper for charSelection(String[] word)
 // sets kotoba to a random element from ReberuNoKotoba (& removes it)
 // & loads the imgs instasnce variable
-void charSelectionRandom(){
+void charSelection(){
   if (ReberuNoKotoba.size() > 0){
     int rndInt = r.nextInt(ReberuNoKotoba.size());
     kotoba = ReberuNoKotoba.remove(rndInt);
     System.out.println(kotoba.getWord());
     String[] syll = kotoba.getSyllables();
     System.out.println(syll[0]);
-    charSelectionRandom(syll);
+    charSelection(syll);
     //drawChars(syll);
   }
 }
@@ -226,10 +216,23 @@ void drawChars(){
   drawChars(kotoba);
 }
 
-void draw() {
-  //TimeToLevel();
-  //charSelection();
-   if(level == 1 && lesson == true){
+void draw(){
+  if (level == 0){
+    image(opening,0,0);
+    textSize(72);
+    text("(Press any key to continue)",300,400);
+    fill(0,102,153,51);
+    if (keyPressed){
+      level = 0.5;
+    }
+  }
+  else if (level == 0.5){
+    image(intro,0,0);
+    if (mousePressed){
+      level = 1;
+    }
+  }
+  else if (level == 1 && lesson == true){
     drawRects();
     charSelection(new String[]{"a", "i", "u", "e", "o", "ka"});
     drawChars(new String[]{"a", "i", "u", "e", "o", "ka"});
@@ -271,31 +274,18 @@ void draw() {
           level = 1.5;
           lesson = false;
           WordSet();
-          charSelectionRandom();
+          charSelection();
           drawChars();
           drawRects();
         }
     }
   }
   else if (level == 1.5){
+    textSize(100);
+    text(kotoba.getWord(),700,300);
     drawChars();
   }
-  else if (level == 0.5){
-    image(intro, 0,0);
-    if (mousePressed){
-        level = 1;
-    }
-  }
-  else if(level == 0){
-    image(opening, 0,0);
-    textSize(72);
-    text("(Press any key to continue)",300,490);
-    fill(0,102,153,51);
-    if (keyPressed){
-        level=0.5;
-    }
-  }
-} 
+}
 
 void drawRects() {
   update(mouseX,mouseY);
