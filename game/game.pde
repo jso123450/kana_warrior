@@ -25,6 +25,9 @@ Random r;
 double level;                              // if it's a whole #, then it's a lesson
 ArrayList<Word> ReberuNoKotoba;            // "Level's Words"
 Word kotoba;                               // "Word"
+int[] randomIndices;                       // the random indices of each syllable
+
+/* -------------------------  SETUP ------------------------- */
 
 void setup() {
   size(1530,840);
@@ -49,8 +52,8 @@ void setup() {
   intro = loadImage("../pictures/introScreen.png"); 
   arrow = loadImage("../pictures/arrow.png");
   startbutton = loadImage("../pictures/start_button.png");
+  randomIndices = new int[6];
 }
-
 
 // setting the level's words (8 ea.)
 void WordSet(){
@@ -106,8 +109,52 @@ void charsSetup(){
  System.out.println(chars);
 }
 
+//changes level accordingly (after all of each level's words have been done)
+void TimeToLevel(){
+  if (ReberuNoKotoba.size() == 0){
+    level+= 0.5;
+    WordSet();
+  }
+}
+
+void resetIndices(){
+  for (int i = 0; i < randomIndices.length; i++)
+    randomIndices[i] = -1; 
+}
+
+/* ------------------------- CHARACTER SELECTIONS ------------------------- */
+
 // word is no longer than 6 characters
 // loads the images corresponding to the syllables
+void charSelectionRandom(String[] syll){
+  if (syll != null){
+    imgs = new PImage[6];
+    ArrayList<Integer> indices = new ArrayList<Integer>();
+    for (int i = 0; i < 6; i++)
+      indices.add(i);
+    int len = syll.length;
+    for (int i = 0; i < len; i++){
+      if (randomIndices[i] == -1){
+        int rndInt = r.nextInt(indices.size());
+        int rndIndex = indices.remove(rndInt);
+        randomIndices[i] = rndIndex;
+        if (syll[i] != null)
+          imgs[rndIndex] = loadImage("../pictures/hiragana/" + syll[i] + ".png");
+        else {
+          int charsRndIndex = r.nextInt(chars.size());
+          imgs[rndIndex] = loadImage("../pictures/hiragana/" + chars.get(charsRndIndex) + ".png");
+        }
+      }
+      else {
+        if (syll[i] != null)
+          imgs[randomIndices[i]] = loadImage("../pictures/hiragana/" + syll[i] + ".png");
+        else
+          imgs[randomIndices[i]] = loadImage("../pictures/hiragana/" + syll[i] + ".png");  
+      }
+    }
+  }
+}
+
 void charSelection(String[] syll){
   if (syll != null){
     int len = syll.length;
@@ -115,9 +162,9 @@ void charSelection(String[] syll){
       if (syll[i] != null)
         imgs[i] = loadImage("../pictures/hiragana/" + syll[i] + ".png");
       else
-        syll[i] = null;
+        imgs[i] = null;
     }
-  /*
+      /*
   for (int j = len; j < imgs.length; j++){
     ArrayList<String> cutChars = chars;
     System.out.println(cutChars);
@@ -135,26 +182,19 @@ void charSelection(String[] syll){
 // wrapper for charSelection(String[] word)
 // sets kotoba to a random element from ReberuNoKotoba (& removes it)
 // & loads the imgs instasnce variable
-void charSelection(){
+void charSelectionRandom(){
   if (ReberuNoKotoba.size() > 0){
     int rndInt = r.nextInt(ReberuNoKotoba.size());
     kotoba = ReberuNoKotoba.remove(rndInt);
     System.out.println(kotoba.getWord());
     String[] syll = kotoba.getSyllables();
     System.out.println(syll[0]);
-    charSelection(syll);
+    charSelectionRandom(syll);
     //drawChars(syll);
   }
 }
 
-//changes level accordingly (after all of each level's words have been done)
-void TimeToLevel(){
-  if (ReberuNoKotoba.size() == 0){
-    level+= 0.5;
-    WordSet();
-  }
-}
-
+/* ------------------------- GRAPHICS ------------------------- */
 
 //draws the characters loaded (in imgs[])
 void drawChars(String[] syllables){
@@ -230,25 +270,15 @@ void draw() {
         if (mouseX > 600 && mouseX < 900 && mouseY > 300 && mouseY < 600){
           level = 1.5;
           lesson = false;
-          // how to make it all white?
           WordSet();
-          charSelection();
+          charSelectionRandom();
           drawChars();
           drawRects();
         }
     }
   }
   else if (level == 1.5){
-    image(imgs[5],400,400,400,400);
     drawChars();
-    //System.out.println(kotoba.getSyllables()[0]);
-    //System.out.println(ReberuNoKotoba);
-    /*
-    WordSet();
-    System.out.println(ReberuNoKotoba);
-    charSelection();
-    drawRects();
-    */
   }
   else if (level == 0.5){
     image(intro, 0,0);
