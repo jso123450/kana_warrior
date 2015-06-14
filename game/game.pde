@@ -28,6 +28,7 @@ ArrayList<Word> ReberuNoKotoba;            // "Level's Words"
 Word kotoba;                               // "Word"
 int[] randCharInd;                         // indices of the random characaters used
 int whichChar;                             // which syllable of the word is currently being spelled
+String currentWord;                        // the part of the current word spelled correctly
 
 /* -------------------------  SETUP ------------------------- */
 
@@ -59,6 +60,7 @@ void setup() {
   resetRandCharInd();
   displayedChars = new String[6];
   whichChar = 0;
+  currentWord = "";
 }
 
 // setting the level's words (8 ea.)
@@ -142,6 +144,10 @@ void resetDisplayedChars(){
   displayedChars = new String[6];
 }
 
+void resetCurrentWord(){
+  currentWord = "";
+}
+
 /* ------------------------- CHARACTER SELECTIONS ------------------------- */
 
 // word is no longer than 6 characters
@@ -186,6 +192,15 @@ void charSelection(){
 
 /* ------------------------- GRAPHICS ------------------------- */
 
+void drawChars(){
+  drawChars(kotoba);
+}
+
+void drawChars(Word w){
+  String[] syll = w.getSyllables();
+  drawChars(syll); 
+}
+
 //draws the characters loaded (in imgs[])
 void drawChars(String[] syllables){
   //charSelection(syllables);
@@ -204,16 +219,6 @@ void drawChars(String[] syllables){
       image(imgs[i],x,y,250,280);
     y+= 280;
   }  
-}
-
-// Wrappers for drawChars    
-void drawChars(Word w){
-  String[] syll = w.getSyllables();
-  drawChars(syll); 
-}
-
-void drawChars(){
-  drawChars(kotoba);
 }
 
 void draw(){
@@ -282,9 +287,43 @@ void draw(){
   }
   else if (level == 1.5){
     textSize(100);
-    text(kotoba.getWord(),700,300);
+    text("Current Round: " + kotoba.getWord(),500,300);
+    text("Spelled: " + currentWord,500,600);
+    if (mouseX < 250){
+      if (mouseY < 280){
+        if (mousePressed){
+          if (correctChar(displayedChars[0])){
+            text("CORRECT!",600,800);
+            currentWord+= displayedChars[0];
+            whichChar++;
+          }
+        }
+      }
+      if (mouseY < 560){
+        if (mousePressed){
+          if (correctChar(displayedChars[1])){
+            text("CORRECT!",600,800);
+            currentWord+= displayedChars[1];
+            whichChar++;
+          }
+        }
+      }
+      if (mouseY > 560){
+        if (mousePressed){
+          if (correctChar(displayedChars[2])){
+            text("CORRECT!",600,800);
+            currentWord+= displayedChars[2];
+            whichChar++;
+          }
+        }
+      }
+    }
     drawChars();
   }
+}
+
+boolean correctChar(String character){
+  return (character.equals(kotoba.getSyllables()[whichChar]));
 }
 
 void drawRects() {
