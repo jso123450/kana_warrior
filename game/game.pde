@@ -23,7 +23,7 @@ String[] displayedChars;                   // which characters are currently on 
 PImage opening, intro, arrow, startbutton, continuebutton;                     
 ArrayList<String> chars;                   // ArrayList of all Japanese sounds
 Random r;
-double level;                              // if it's a whole #, then it's a lesson
+int level;                                 // if it's odd, then it's a lesson
 ArrayList<Word> ReberuNoKotoba;            // "Level's Words"
 Word kotoba;                               // "Word"
 int[] randCharInd;                         // indices of the random characaters used
@@ -41,7 +41,7 @@ void setup() {
   ReberuNoKotoba = new ArrayList<Word>();
   imgs = new PImage[6];
   r = new Random();
-  level = 0.0;
+  level = -1;
   MidLeftRectX = 0;
   MidLeftRectY = 280;
   LowerLeftRectX = 0;
@@ -71,7 +71,7 @@ void setup() {
 
 // setting the level's words (8 ea.)
 void WordSet(){
-  if (level == 1.5){
+  if (level == 2){
     ReberuNoKotoba.add(new Word(new String[]{"i","e"}));
     ReberuNoKotoba.add(new Word(new String[]{"ka","o"}));
     ReberuNoKotoba.add(new Word(new String[]{"a","o"}));
@@ -81,7 +81,7 @@ void WordSet(){
     ReberuNoKotoba.add(new Word(new String[]{"u","e"}));
     ReberuNoKotoba.add(new Word(new String[]{"e","ki"}));
   }
-  if (level == 2.5){
+  if (level == 4){
     ReberuNoKotoba.add(new Word(new String[]{"su","shi"}));
     ReberuNoKotoba.add(new Word(new String[]{"ka","gi"}));
     ReberuNoKotoba.add(new Word(new String[]{"su","ki"}));
@@ -242,19 +242,19 @@ void drawChars(String[] syllables){
 }
 
 void draw(){
-  if (level == 0){
+  if (level == -1){
     image(opening,0,0);
     textSize(72);
     text("(Press any key to continue)",300,400);
     fill(0,102,153,51);
     if (keyPressed){
-      level = 0.5;
+      level++;
     }
   }
-  else if (level == 0.5){
+  else if (level == 0){
     image(intro,0,0);
     if (mousePressed){
-      level = 1;
+      level++;
     }
   }
   else if (level == 1 && lesson == true){
@@ -296,7 +296,7 @@ void draw(){
           }
         }
         if (mouseX > 600 && mouseX < 900 && mouseY > 300 && mouseY < 600){
-          level = 1.5;
+          level++;
           lesson = false;
           WordSet();
           charSelection();
@@ -305,7 +305,7 @@ void draw(){
         }
     }
   }
-  else if (level == 1.5){
+  else if (level == 2){
     textSize(100);
     text("Current Round",400,100);
     text(kotoba.getWord(),600,200);
