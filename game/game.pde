@@ -19,10 +19,10 @@ boolean lesson = true;
 
 // Imgs & Game-Running Related Data
 PImage[] imgs;                             // the six characters displayed at any given time
-PImage opening, intro, arrow;                     
+PImage opening, intro, arrow, startbutton;                     
 ArrayList<String> chars;                   // ArrayList of all Japanese sounds
 Random r;
-double level;                              // if it's 0.5, then it's a lesson
+double level;                              // if it's a whole #, then it's a lesson
 ArrayList<Word> ReberuNoKotoba;            // "Level's Words"
 Word kotoba;                               // "Word"
 
@@ -48,12 +48,13 @@ void setup() {
   opening = loadImage("../pictures/openingScreen.png");
   intro = loadImage("../pictures/introScreen.png"); 
   arrow = loadImage("../pictures/arrow.png");
+  startbutton = loadImage("../pictures/start_button.png");
 }
 
 
 // setting the level's words (8 ea.)
 void WordSet(){
-  if (level == 1){
+  if (level == 1.5){
     ReberuNoKotoba.add(new Word("ie"));
     ReberuNoKotoba.add(new Word("kao"));
     ReberuNoKotoba.add(new Word("ao"));
@@ -63,7 +64,7 @@ void WordSet(){
     ReberuNoKotoba.add(new Word("ue"));
     ReberuNoKotoba.add(new Word("eki"));
   }
-  if (level == 2){
+  if (level == 2.5){
     ReberuNoKotoba.add(new Word("sushi"));
     ReberuNoKotoba.add(new Word("kagi"));
     ReberuNoKotoba.add(new Word("suki"));
@@ -110,8 +111,10 @@ void charsSetup(){
 void charSelection(String[] syll){
   if (syll != null){
     int len = syll.length;
-    for (int i = 0; i < len; i++)
-      imgs[i] = loadImage("../pictures/hiragana/" + syll[i] + ".png");
+    for (int i = 0; i < len; i++){
+      if (syll[i] != null)
+        imgs[i] = loadImage("../pictures/hiragana/" + syll[i] + ".png");
+    }
   /*
   for (int j = len; j < imgs.length; j++){
     ArrayList<String> cutChars = chars;
@@ -134,7 +137,8 @@ void charSelection(){
     int rndInt = r.nextInt(ReberuNoKotoba.size());
     kotoba = ReberuNoKotoba.remove(rndInt);
     String[] syll = kotoba.getSyllables();
-    charSelection(syll);
+    //charSelection(syll);
+    drawChars(syll);
   }
 }
 
@@ -168,22 +172,63 @@ void draw() {
   //charSelection();
    if(level == 1 && lesson == true){
     drawRects();
+    image(startbutton,600,300,300,300);
     textSize(33);
-    text("here are the first 6 characters of the Japanese alphabet", 300, 400);
+    text("Here are the first 6 characters of hiragana", 400, 100);
     if(mousePressed){
-      
-        image(arrow, 280,0);
-        text("this is 'a'", 300,400);
+        if (mouseX < 250){
+          if (mouseY < 280){
+            image(arrow,280,0);
+            text("this is 'a'", 300,280);
+          }
+          else if (mouseY < 560){
+            image(arrow,280,280);
+            text("this is 'i'",300,560);
+          }
+          else if (mouseY > 560){
+            image(arrow,280,560);
+            text("this is 'u'",300,830);
+          }
+        }
+        // need flippity floppity arrow pic right here
+        if (mouseX > 1250){
+          if (mouseY < 280){
+            image(arrow,1000,0);
+            text("this is 'e'",1100,280); 
+          }
+          else if (mouseY < 560){
+            image(arrow,1000,280);
+            text("this is 'o'",1100,560);
+          }
+          else if (mouseY > 560){
+            image(arrow,1000,560);
+            text("this is 'ka'",1075,830);
+          }
+        }
+        if (mouseX > 600 && mouseX < 900 && mouseY > 300 && mouseY < 600){
+          level = 1.5;
+          lesson = false;
+          // how to make it all white?
+          clear();  
+        }
     }
-  }else if (level == 0.5){
+  }
+  else if (level == 1.5){
+    WordSet();
+    //System.out.println(ReberuNoKotoba);
+    //charSelection();
+    drawRects();
+  }
+  else if (level == 0.5){
     image(intro, 0,0);
     if(mousePressed){
         level = 1;
     }
-  }else if(level == 0){
+  }
+  else if(level == 0){
     image(opening, 0,0);
     textSize(72);
-     text("(Press any key to continue)", 300 ,490);
+     text("(Press any key to continue)",300,490);
      fill(0,102,153,51);
     if (keyPressed){
         level=0.5;
