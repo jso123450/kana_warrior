@@ -19,7 +19,7 @@ boolean lesson = true;
 
 // Imgs & Game-Running Related Data
 PImage[] imgs;                             // the six characters displayed at any given time
-PImage opening, intro;                     // opening screen
+PImage opening, intro, arrow;                     
 ArrayList<String> chars;                   // ArrayList of all Japanese sounds
 Random r;
 double level;                              // if it's 0.5, then it's a lesson
@@ -46,7 +46,8 @@ void setup() {
   BGcolor = 35;  
   newColor = 70;
   opening = loadImage("../pictures/openingScreen.png");
-  intro = loadImage("../pictures/introScreen.png");  
+  intro = loadImage("../pictures/introScreen.png"); 
+  arrow = loadImage("../pictures/arrow.png");
 }
 
 
@@ -166,7 +167,14 @@ void draw() {
   //TimeToLevel();
   //charSelection();
    if(level == 1 && lesson == true){
-    background(255);
+    drawRects();
+    textSize(33);
+    text("here are the first 6 characters of the Japanese alphabet", 300, 400);
+    if(mousePressed){
+      
+        image(arrow, 280,0);
+        text("this is 'a'", 300,400);
+    }
   }else if (level == 0.5){
     image(intro, 0,0);
     if(mousePressed){
