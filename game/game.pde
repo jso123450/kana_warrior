@@ -150,7 +150,7 @@ void charsSetup(){
 //changes level accordingly (after all of each level's words have been done)
 void TimeToLevel(){
   if (ReberuNoKotoba.size() == 0){
-    level+= 0.5;
+    level+= 1;
     resetRandCharInd();
     resetDisplayedChars();
     resetCurrentWord();
@@ -329,6 +329,7 @@ void drawLessons(String[] syllables, int whichLevel){
 }
 
 void draw(){
+  System.out.println(level);
   if (level == -1){
     image(opening,0,0);
     textSize(72);
@@ -346,10 +347,11 @@ void draw(){
   }
   else if (level == 1){
     //a,i,u,e,o,ka
-    drawLessons(new String[]{"a","i","u","e","o"},1);
+    drawLessons(new String[]{"a" , "i" , "u", "e", "o", "ka"},1);
   }
   else if (level == 3){
     //ki,ku,ke,ko,ga,gi
+    drawLessons(new String[]{"ki" , "ku" , "ke" , "ko" , "ga" , "gi"},3);
   }
   else if (level == 5){
     //gu,ge,go,sa,shi,su
