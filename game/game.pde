@@ -88,23 +88,18 @@ void setup() {
 void WordSet(){
   if (level == 2){
     ReberuNoKotoba.add(new Word(new String[]{"i","e"}));
-    ReberuNoKotoba.add(new Word(new String[]{"ka","o"}));
     ReberuNoKotoba.add(new Word(new String[]{"a","o"}));
-    ReberuNoKotoba.add(new Word(new String[]{"a","ka"}));
-    ReberuNoKotoba.add(new Word(new String[]{"ko","e"}));
-    ReberuNoKotoba.add(new Word(new String[]{"a","i"}));
     ReberuNoKotoba.add(new Word(new String[]{"u","e"}));
-    ReberuNoKotoba.add(new Word(new String[]{"e","ki"}));
   }
   if (level == 4){
-    ReberuNoKotoba.add(new Word(new String[]{"su","shi"}));
+    ReberuNoKotoba.add(new Word(new String[]{"ka","o"}));
     ReberuNoKotoba.add(new Word(new String[]{"ka","gi"}));
+    ReberuNoKotoba.add(new Word(new String[]{"e","ki"}));
+  }
+  if (level == 6){
     ReberuNoKotoba.add(new Word(new String[]{"su","ki"}));
-    ReberuNoKotoba.add(new Word(new String[]{"se","kai"}));
+    ReberuNoKotoba.add(new Word(new String[]{"se","ka", "i"}));
     ReberuNoKotoba.add(new Word(new String[]{"ka","sa"}));
-    ReberuNoKotoba.add(new Word(new String[]{"ke","sa"}));
-    ReberuNoKotoba.add(new Word(new String[]{"ka","ge"}));
-    ReberuNoKotoba.add(new Word(new String[]{"o","o","ki","i"}));
   } 
 }
 
@@ -357,9 +352,11 @@ void draw(){
   }
   else if (level == 5){
     //gu,ge,go,sa,shi,su
+    drawLessons(new String[] {"gu" , "ge" , "go" , "sa" , "shi" , "su", 5});
   }
   else if (level == 7){
     //se,so,za,ji,zu,ze
+     drawLessons(new String[] {"se" , "so" , "za" , "ji" , "zu" , "ze", 7});
   }
   else if (level == 9){
     //zo,ta,chi,tsu,te,to  
