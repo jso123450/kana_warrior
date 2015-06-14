@@ -288,6 +288,8 @@ void drawLessons(String[] syllables, int whichLevel){
   image(startbutton,600,300,300,300);
   textSize(33);
   text("Here are six (more) characters of hiragana", 400, 100);
+  text("click on each character to find out what each is", 400, 200);
+  text("when you think you're ready click the start button", 400, 300);
   if(mousePressed){
     if (mouseX < 250){
       if (mouseY < 280){
