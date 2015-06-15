@@ -20,7 +20,7 @@ public class Word{
 	this.w = w;
 	syllables = syll;
     }
-
+    
     public String buildWord(String[] syll){
 	String builtWord = "";
 	for (String s : syll)
