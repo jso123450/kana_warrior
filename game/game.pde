@@ -41,7 +41,7 @@ boolean cont;                              // valid to continue
   Level 09: zo  ta  chi tsu te  to
   Level 11: da  di  dzu de  do  na
   Level 13: ni  nu  ne  no  ha  hi
-  Level 15: hu  he  ho  ba  bi  bu
+  Level 15: fu  he  ho  ba  bi  bu
   Level 17: be  bo  pa  pi  pu  pe
   Level 19: po  ma  mi  mu  me  mo
   Level 21: ra  ri  ru  re  ro  ya
@@ -126,7 +126,7 @@ void WordSet(){
     ReberuNoKotoba.add(new Word(new String[]{"he","bi"}));
     ReberuNoKotoba.add(new Word(new String[]{"ba","ke","mo","no"}));
     ReberuNoKotoba.add(new Word(new String[]{"e","bi"}));
-    ReberuNoKotoba.add(new Word(new String[]{"hu","ku"}));
+    ReberuNoKotoba.add(new Word(new String[]{"fu","ku"}));
   }
   if (level == 18){
     ReberuNoKotoba.add(new Word(new String[]{"ta","be","mo","no"}));
@@ -320,7 +320,7 @@ void drawLessons(String[] syllables, int whichLevel){
   if (whichLevel == 13)
     characters = new String[]{"ni","nu","ne","no","ha","hi"};
   if (whichLevel == 15)
-    characters = new String[]{"hu","he","ho","ba","bi","bu"};
+    characters = new String[]{"fu","he","ho","ba","bi","bu"};
   if (whichLevel == 17)
     characters = new String[]{"be","bo","pa","pi","pu","pe"};
   if (whichLevel == 19)
@@ -433,8 +433,8 @@ void draw(){
     drawLessons(new String[] {"ni" , "nu" , "ne" , "no" , "ha" , "hi"},13);  
   }
   else if (level == 15){
-    //hu,he,ho,ba,bi,bu
-    drawLessons(new String[] {"hu" , "he" , "ho" , "ba" , "bi" , "bu"},15);  
+    //fu,he,ho,ba,bi,bu
+    drawLessons(new String[] {"fu" , "he" , "ho" , "ba" , "bi" , "bu"},15);  
   }
   else if (level == 17){
     //be,bo,pa,pi,pu,pe
