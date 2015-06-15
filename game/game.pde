@@ -447,7 +447,7 @@ void draw(){
     drawLessons(new String[] {"yu" , "yo" , "wa" , "n" , "", ""},23);  
   }
   else if (level == 25){
-    image(ending, 0, 0);
+    image(ending, 0, 0, 1530, 840);
   }
   else if (level % 2 == 0){
     textSize(100);
