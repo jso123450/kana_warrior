@@ -16,5 +16,9 @@ Helping the world by defeating and learning kana one kana at a timeeeeeee
 - 5/18 Messed around with the processing formats & files
 - 5/27 Wrote a method to select random characters and display them
 - 5/29 Created Word.java
-- other stuff, need to fill, in forgot to add
+- 6/1 Bug fixing with specific formatting concerns
+- 6/4 Decided on the game play and created a specific layout of what will happen
+- 6/8 Created opening and introduction screens
+- 6/9 Made the screen interactive
+- 6/10 Connected opening to actual interactive game
 - 6/13 Added lesson
