@@ -19,7 +19,8 @@ boolean charOver = false;
 // Imgs & Game-Running Related Data
 PImage[] imgs;                             // the six characters displayed at any given time
 String[] displayedChars;                   // which characters are currently on the screen
-PImage opening, intro, arrow, startbutton, continuebutton, ending;                     
+PImage opening, intro, arrow, startbutton, continuebutton, ending;
+PImage dictionaryIntro, dictionary1, dictionary2, dictionary3, dictionary4, dictionary5, dictionary6;
 ArrayList<String> chars;                   // ArrayList of all Japanese sounds
 Random r;
 int level;                                 // if it's odd, then it's a lesson
@@ -75,6 +76,13 @@ void setup() {
   startbutton = loadImage("../pictures/start_button.png");
   continuebutton = loadImage("../pictures/continue_button.png");
   ending = loadImage("../pictures/endingScreen.png");
+  dictionaryIntro = loadImage("../pictures/dictionaryIntro.png"); 
+  dictionary1 = loadImage("../pictures/dictionary1.png");
+  dictionary2 = loadImage("../pictures/dictionary2.png");
+  dictionary3 = loadImage("../pictures/dictionary3.png");
+  dictionary4 = loadImage("../pictures/dictionary4.png");
+  dictionary5 = loadImage("../pictures/dictionary5.png");
+  dictionary6 = loadImage("../pictures/dictionary6.png");
   randCharInd = new int[6];
   charsSetup();
   resetRandCharInd();
@@ -127,7 +135,6 @@ void WordSet(){
     ReberuNoKotoba.add(new Word(new String[]{"do","ki"}));
     ReberuNoKotoba.add(new Word(new String[]{"na","su"}));
     ReberuNoKotoba.add(new Word(new String[]{"na","ku"}));
-    ReberuNoKotoba.add(new Word(new String[]{"do","ge"}));
   }
   if (level == 14){
     ReberuNoKotoba.add(new Word(new String[]{"ha","na"}));
@@ -468,6 +475,29 @@ void draw(){
   }
   else if (level == 25){
     image(ending, 0, 0, 1530, 840);
+    textSize(30);
+    text("Press any key to continue",400,700);
+    if(keyPressed){
+        image(dictionaryIntro,0,0, 1530,840);
+        if(mousePressed){
+           image(dictionary1,0,0, 1530,840);
+           if(mousePressed){
+             image(dictionary2,0,0, 1530,840);
+             if(mousePressed){
+               image(dictionary3,0,0, 1530,840);
+               if(mousePressed){
+                  image(dictionary4,0,0, 1530,840);
+                  if(mousePressed){
+                     image(dictionary5,0,0, 1530,840);
+                     if(mousePressed){
+                         image(dictionary6,0,0, 1530,840);
+                     }
+                  }
+               }
+             }
+           }
+        }
+    }
   }
   else if (level % 2 == 0){
     textSize(100);
