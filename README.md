@@ -23,3 +23,6 @@ Helping the world by defeating and learning kana one kana at a timeeeeeee
 - 6/10 Connected opening to actual interactive game
 - 6/13 Added lessons
 - 6/14 Added finishing touches
+
+# Notes
+- gameTest was a copy of the game folder in which we tested new code out
