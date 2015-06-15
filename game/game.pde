@@ -91,36 +91,50 @@ void WordSet(){
     ReberuNoKotoba.add(new Word(new String[]{"i","e"}));
     ReberuNoKotoba.add(new Word(new String[]{"a","o"}));
     ReberuNoKotoba.add(new Word(new String[]{"u","e"}));
+    ReberuNoKotoba.add(new Word(new String[]{"e"}));
+    ReberuNoKotoba.add(new Word(new String[]{"o","o","i"}));
   }
   if (level == 4){
     ReberuNoKotoba.add(new Word(new String[]{"ka","o"}));
     ReberuNoKotoba.add(new Word(new String[]{"ka","gi"}));
     ReberuNoKotoba.add(new Word(new String[]{"e","ki"}));
+    ReberuNoKotoba.add(new Word(new String[]{"ki","gi"}));
+    ReberuNoKotoba.add(new Word(new String[]{"ka","ku"}));
   }
   if (level == 6){
     ReberuNoKotoba.add(new Word(new String[]{"su","ki"}));
     ReberuNoKotoba.add(new Word(new String[]{"ka","ge"}));
     ReberuNoKotoba.add(new Word(new String[]{"ka","sa"}));
+    ReberuNoKotoba.add(new Word(new String[]{"ke","i","gu"}));
+    ReberuNoKotoba.add(new Word(new String[]{"ke","i","shi"}));
   } 
   if (level == 8){
     ReberuNoKotoba.add(new Word(new String[]{"a","ji"}));
     ReberuNoKotoba.add(new Word(new String[]{"se","ka", "i"}));
     ReberuNoKotoba.add(new Word(new String[]{"o","o","ki","i"}));
+    ReberuNoKotoba.add(new Word(new String[]{"a","sa"}));
+    ReberuNoKotoba.add(new Word(new String[]{"ka","ze"}));
   }
   if (level == 10){
     ReberuNoKotoba.add(new Word(new String[]{"chi","zu"}));
     ReberuNoKotoba.add(new Word(new String[]{"chi","ka", "te", "tsu"}));
     ReberuNoKotoba.add(new Word(new String[]{"so","to"}));
+    ReberuNoKotoba.add(new Word(new String[]{"te","tsu"}));
+    ReberuNoKotoba.add(new Word(new String[]{"za","shi","ki"}));
   }
   if (level == 12){
     ReberuNoKotoba.add(new Word(new String[]{"da","su"}));
     ReberuNoKotoba.add(new Word(new String[]{"do","ki"}));
     ReberuNoKotoba.add(new Word(new String[]{"na","su"}));
+    ReberuNoKotoba.add(new Word(new String[]{"na","ku"}));
+    ReberuNoKotoba.add(new Word(new String[]{"do","ge"}));
   }
   if (level == 14){
     ReberuNoKotoba.add(new Word(new String[]{"ha","na"}));
     ReberuNoKotoba.add(new Word(new String[]{"ne","gi"}));
     ReberuNoKotoba.add(new Word(new String[]{"no","do"}));
+    ReberuNoKotoba.add(new Word(new String[]{"nu","ke","da","su"}));
+    ReberuNoKotoba.add(new Word(new String[]{"nu","ka","su"}));
   }
   if (level == 16){
     ReberuNoKotoba.add(new Word(new String[]{"he","bi"}));
@@ -150,7 +164,7 @@ void WordSet(){
     ReberuNoKotoba.add(new Word(new String[]{"ni","wa","to","ri"}));
     ReberuNoKotoba.add(new Word(new String[]{"e","n","pi","tsu"}));
     ReberuNoKotoba.add(new Word(new String[]{"shi","n","bu","n"}));
-    ReberuNoKotoba.add(new Word(new String[]{"ko","n","ni","ba", "n"}));
+    ReberuNoKotoba.add(new Word(new String[]{"ko","n","ba","n"}));
     ReberuNoKotoba.add(new Word(new String[]{"ne","da","n"}));
   }
 }
