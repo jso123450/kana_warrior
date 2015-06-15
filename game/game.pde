@@ -19,7 +19,7 @@ boolean charOver = false;
 // Imgs & Game-Running Related Data
 PImage[] imgs;                             // the six characters displayed at any given time
 String[] displayedChars;                   // which characters are currently on the screen
-PImage opening, intro, arrow, startbutton, continuebutton;                     
+PImage opening, intro, arrow, startbutton, continuebutton, ending;                     
 ArrayList<String> chars;                   // ArrayList of all Japanese sounds
 Random r;
 int level;                                 // if it's odd, then it's a lesson
@@ -74,6 +74,7 @@ void setup() {
   arrow = loadImage("../pictures/arrow.png");
   startbutton = loadImage("../pictures/start_button.png");
   continuebutton = loadImage("../pictures/continue_button.png");
+  ending = loadImage("../pictures/endingScreen.png");
   randCharInd = new int[6];
   charsSetup();
   resetRandCharInd();
@@ -444,6 +445,9 @@ void draw(){
   else if (level == 23){
     //yu,yo,wa,n
     drawLessons(new String[] {"yu" , "yo" , "wa" , "n" , "", ""},23);  
+  }
+  else if (level == 25){
+    image(ending, 0, 0);
   }
   else if (level % 2 == 0){
     textSize(100);
