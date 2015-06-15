@@ -21,4 +21,5 @@ Helping the world by defeating and learning kana one kana at a timeeeeeee
 - 6/8 Created opening and introduction screens
 - 6/9 Made the screen interactive
 - 6/10 Connected opening to actual interactive game
-- 6/13 Added lesson
+- 6/13 Added lessons
+- 6/14 Added finishing touches
