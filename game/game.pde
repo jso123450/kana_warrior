@@ -313,15 +313,24 @@ void drawLessons(String[] syllables, int whichLevel){
     // need flippity floppity arrow pic right here
     if (mouseX > 1250){
       if (mouseY < 280){
-        image(arrow,1000,0);
+       pushMatrix();
+       scale(-1.0, 1.0);
+       image(arrow, -arrow.width - 1000 , 0);
+        popMatrix();
         text("this is '" + characters[3] + "'",1100,280); 
       }
       else if (mouseY < 560){
-        image(arrow,1000,280);
+        pushMatrix();
+       scale(-1.0, 1.0);
+       image(arrow, -arrow.width - 1000 , 280);
+        popMatrix();
         text("this is '" + characters[4] + "'",1100,560);
       }
       else if (mouseY > 560){
-        image(arrow,1000,560);
+        pushMatrix();
+       scale(-1.0, 1.0);
+       image(arrow, -arrow.width - 1000 , 560);
+        popMatrix();
         text("this is '" + characters[5] + "'",1075,830);
       }
     }
@@ -362,15 +371,15 @@ void draw(){
   }
   else if (level == 5){
     //gu,ge,go,sa,shi,su
-    drawLessons(new String[] {"gu" , "ge" , "go" , "sa" , "shi" , "su", 5});
+    drawLessons(new String[] {"gu" , "ge" , "go" , "sa" , "shi" , "su"}, 5);
   }
   else if (level == 7){
     //se,so,za,ji,zu,ze
-     drawLessons(new String[] {"se" , "so" , "za" , "ji" , "zu" , "ze", 7});
+     drawLessons(new String[] {"se" , "so" , "za" , "ji" , "zu" , "ze"}, 7);
   }
   else if (level == 9){
     //zo,ta,chi,tsu,te,to
-    drawLessons(new String[] {"zo" , "ta" , "chi" , "tsu" , "te" , "to", 9});  
+    drawLessons(new String[] {"zo" , "ta" , "chi" , "tsu" , "te" , "to"}, 9);  
   }
   else if (level == 11){
     //da,di,dzu,de,do,na 
