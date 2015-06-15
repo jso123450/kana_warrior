@@ -237,7 +237,7 @@ void charSelection(String[] syll){
         imgs[i] = loadImage("../pictures/hiragana/" + syll[i] + ".png");
       }
       else {
-        System.out.println(randCharInd[i]);
+        //System.out.println(randCharInd[i]);
         if (randCharInd[i] == -1){
           int rndInd = r.nextInt(chars.size());
           randCharInd[i] = rndInd;
@@ -257,9 +257,9 @@ void charSelection(){
   if (ReberuNoKotoba.size() > 0){
     int rndInt = r.nextInt(ReberuNoKotoba.size());
     kotoba = ReberuNoKotoba.remove(rndInt);
-    System.out.println(kotoba.getWord());
+    //System.out.println(kotoba.getWord());
     String[] syll = kotoba.getSyllables();
-    System.out.println(syll[0]);
+    //System.out.println(syll[0]);
     charSelection(syll);
     //drawChars(syll);
   }
@@ -381,6 +381,7 @@ void drawLessons(String[] syllables, int whichLevel){
 
 void draw(){
   System.out.println(level);
+  System.out.println(ReberuNoKotoba);
   if (level == -1){
     image(opening,0,0);
     textSize(72);
@@ -456,7 +457,7 @@ void draw(){
     if (mouseX < 250){
       if (mouseY < 280){
         if (mousePressed){
-          System.out.println(displayedChars[0]);
+          //System.out.println(displayedChars[0]);
           drawRects();
           if (correctChar(displayedChars[0])){
             text("CORRECT!",600,800);
@@ -563,12 +564,14 @@ void update(int x, int y) {
     }
 }
 
+/*
 void mousePressed() {
   if (charOver) {
      System.out.println("4");
    
   }
 }
+*/
 
 boolean overChar(int x, int y, int width, int height)  {
   if (mouseX >= x && mouseX <= x+width && 
